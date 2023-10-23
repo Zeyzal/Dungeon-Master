@@ -1,3 +1,4 @@
+
 mob/proc //For NPC use only.
 	CraftItem(obj/Items/A1,RANK)
 		A1.CraftRank = "[RANK] Quality"
