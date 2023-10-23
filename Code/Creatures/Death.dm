@@ -48,7 +48,7 @@ mob/proc/Death()
 		if(ismob(src.Owner))
 			var/mob/S = src.Owner
 			if(IsRoyal)
-				S.CoolDown("[GenderToLeader(Gender)]",36000)
+				S.CoolDown("[GenderToLeader(Gender)]",18000)
 				S << "[src] has been slain! You now must wait a full hour before you may declare a new [GenderToLeader(Gender)]."
 			S.UnitList -= src
 		for(var/atom/movable/A in src) DropItem(A)

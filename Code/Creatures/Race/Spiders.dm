@@ -101,8 +101,8 @@ mob/proc/SpiderChooseEgg() //For manual egg creation. Eventually I want this to 
 		var/EGGTYPE=input(Owner,"Choose an Egg to lay.","Egg Laying") in CHOICES
 		if(A)
 			for(var/mob/M in A.UnitList) if(M.Race=="Spider"||M.icon_state=="Spider") SPIDERS+=1
-			if(SPIDERS>Level/2)
-				A << "[src] has too many spiders, she is limited to controlling half her level ([Level/2]) in spiders."
+			if(SPIDERS>Level)
+				A << "[src] has too many spiders, she is limited to controlling her level ([Level]) in spiders."
 				return
 		if(EGGTYPE!="Cancel"&&WebContent>=50)
 			WebContent-=50
@@ -126,7 +126,7 @@ mob/proc/SpiderAgeGains() if(Race=="Spider") //From Scratch! :D Outside of maybe
 	DAMAGE_UP_MAX = DAMAGE_UP_MAX
 	switch(SubRace)
 		if("Queen")
-			POISON_UP=1
+			POISON_UP=2
 			SILK_UP=15
 			DAMAGE_UP_MIN=0
 			DAMAGE_UP_MAX=0
@@ -138,7 +138,7 @@ mob/proc/SpiderAgeGains() if(Race=="Spider") //From Scratch! :D Outside of maybe
 			DAMAGE_UP_MAX=0
 			DEFENCE_UP=6
 		if("Hunter")
-			POISON_UP=2
+			POISON_UP=1.5
 			SILK_UP=1
 			DAMAGE_UP_MIN=0
 			DAMAGE_UP_MAX=0

@@ -174,7 +174,7 @@ obj
 					if(M.SubRace == "Illithid")
 						for(var/mob/Monsters/F in range(8,M))
 							if(F == M.MagicTarget && F.Owner != M.Owner) if(!F.Critter)
-								if(F.Undead == 0 && F.Race != "Vampire" && F.Infects == 0 && F.SubRace != "Illithid" && F.Race != "Gargoyle" && F.Race != "Demon" && F.Race != "Bat")
+								if(F.Undead == 0 && F.Race != "Vampire" && F.Infects == 0 && F.SubRace != "Illithid" && F.Race != "Gargoyle" && F.Race != "Demon" && F.Race != "Dragon")
 									if(M.Tiredness >= 0)
 										if(M.invisibility >= 1)
 											M.invisibility = 0

@@ -88,7 +88,7 @@ mob/verb/Restart()
 					NUMBER=1
 					LOC=LocateValidLocation(X=240,XX=850,Y=210,YY=800)
 				if("Svartalfar")
-					NUMBER=1
+					NUMBER=2
 					LOC=LocateValidLocation(Z=2)
 				if("Ratman","Kobold")
 					NUMBER=5
@@ -144,7 +144,7 @@ mob/verb/Restart()
 					if("Svartalfar")
 						M.ForcePickUpItem(CraftItem(new/obj/Items/Equipment/Armour/Helmet/RedHat,"Quality"))
 						M.ForcePickUpItem(CraftItem(new/obj/Items/Equipment/Armour/Chestplate/RedRobe,"Quality"))
-						M.ForcePickUpItem(CraftItem(new/obj/Items/Equipment/Weapon/Maces/NecroStaff,"Quality"))
+						M.ForcePickUpItem(CraftItem(new/obj/Items/Equipment/Weapon/Maces/NecroStaff,"Legendary"))
 				for(var/obj/Items/Equipment/E in M) M.EquipItem(E)
 				if(M.weight>M.weightmax) M.weightmax=M.weight+30
 				M.ChangeOwnership(src)

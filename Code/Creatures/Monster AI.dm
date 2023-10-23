@@ -142,7 +142,7 @@ mob/Monsters/proc/LocateTarget(RANGE=5) for(var/mob/Monsters/M in oview(RANGE,sr
 		var/mob/OWNERA = Owner
 		var/mob/OWNERB = M.Owner
 		if(OWNERB.name in OWNERA.AllyList) Gunna=0
-		if(OWNERB.Faction == OWNERA.Faction) Gunna=0
+		if(OWNERB.Faction == OWNERA.Faction && OWNERB.Faction != "Player") Gunna=0
 	if(ismob(M.destination))
 		var/mob/Monsters/D = M.destination
 		if(D.Owner == Owner) Gunna=1

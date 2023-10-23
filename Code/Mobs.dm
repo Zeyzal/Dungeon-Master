@@ -79,7 +79,7 @@ mob
 			RightLeg = "N/A"
 			OrganMaxHP = 150
 			Undead = 1
-			Defence = 75
+			Defence = 40
 			Age = 2000
 			DieAge = 5000
 			New()
@@ -180,6 +180,7 @@ mob
 			LockPickingSkill = 10
 			CookingSkill = 20
 			FishingSkill = 25
+			ImmunePoison = 1
 			HasLeftEye = 1
 			HasRightEye = 1
 			HasRightLung  = 1
@@ -317,7 +318,7 @@ mob
 				if(GENDER) Gender = "Male"
 				else Gender = "Female"
 				Hair="Elf[Gender]"
-				usr.Strength += rand(2,4)
+				usr.Strength += rand(4,8)
 				usr.Agility += rand(9,14)
 				usr.Defence += rand(5,10)
 				usr.Intelligence += rand(1,3)
@@ -507,8 +508,8 @@ mob
 						WeaponDamageMin=50
 						WeaponDamageMax=70
 						WearingShield=1
-						Strength=50
-						Agility=50
+						Strength=70
+						Agility=70
 						Defence=90
 						New()
 							..()
@@ -525,9 +526,9 @@ mob
 					icon = 'HumanBlack.dmi'
 				if(Gender=="Female") Hair="Human[pick("Black","Brown")]"
 				else Hair=0
-				Strength += rand(5,10)
+				Strength += rand(7,10)
 				Agility += rand(7,11)
-				Defence += rand(4,9)
+				Defence += rand(8,9)
 				Intelligence += rand(1,2)
 				DieAge += rand(95,115)
 				StartAllProcs()
@@ -621,7 +622,7 @@ mob
 					EXP=50000
 					ButcherySkill=150
 					SneakingSkill=100
-					Defence=40
+					Defence=70
 					ArmourSkill=70
 					ShieldSkill=70
 					New()
@@ -654,9 +655,9 @@ mob
 			New(LOC,GENDER=prob(50))
 				if(GENDER) Gender = "Male"
 				else Gender = "Female"
-				Strength += rand(7,14)
+				Strength += rand(11,14)
 				Agility += rand(5,8)
-				Defence += rand(6,12)
+				Defence += rand(9,12)
 				Intelligence += rand(0.25,0.5)
 				DieAge += rand(110,125)
 				StartAllProcs()
@@ -723,10 +724,10 @@ mob
 			HasNose = 1
 			OrganMaxHP = 130
 			New()
-				Strength += rand(2,5)
+				Strength += rand(5,8)
 				Agility += rand(5,8)
-				Defence += rand(2,5)
-				Intelligence += rand(4.5,6.5)
+				Defence += rand(5,11)
+				Intelligence += rand(6,6.5)
 				DieAge += rand(270,300)
 				StartAllProcs()
 				..()
@@ -795,7 +796,7 @@ mob
 				Scout
 					ReturnDelay=300
 					name = "{NPC Goblins} Goblin Scout"
-					SpearSkill=40
+					SpearSkill=80
 					New()
 						for(var/obj/Items/Equipment/E in list(new/obj/Items/Equipment/Weapon/Spears/Spear()))
 							CraftItem(E,"Average")
@@ -850,9 +851,9 @@ mob
 				Age = rand(20,60)
 				if(GENDER) Gender = "Male"
 				else Gender = "Female"
-				Strength += rand(4,9)
+				Strength += rand(7,9)
 				Agility += rand(8,12)
-				Defence += rand(3,8)
+				Defence += rand(6,8)
 				Intelligence += rand(0.5,0.75)
 				DieAge = rand(110,120)
 				StartAllProcs()
@@ -949,7 +950,7 @@ mob
 			icon_state = "Normal"
 			density = 1
 			weightmax = 130
-			MineingSkill = 50
+			MineingSkill = 90
 			WoodCuttingSkill = 20
 			Race = "Dwarf"
 			UsesPicks = 1
@@ -958,10 +959,10 @@ mob
 			Carn = 0
 
 			BowSkill = 15
-			AxeSkill = 20
+			AxeSkill = 40
 			ArmourSkill = 40
 			SneakingSkill = 10
-			ShieldSkill = 20
+			ShieldSkill = 40
 			ButcherySkill = 10
 			MaceSkill = 25
 			SkinningSkill = 10
@@ -1030,9 +1031,9 @@ mob
 					Gender = "Female"
 					Beard = 0
 					Hair = "HumanBrown"
-				Strength += rand(7,14)
-				Agility += rand(3,6)
-				Defence += rand(7,13)
+				Strength += rand(10,14)
+				Agility += rand(8, 10)
+				Defence += rand(9, 13)
 				Intelligence += rand(0.5,0.75)
 				DieAge += rand(120,150)
 				StartAllProcs()
@@ -1060,7 +1061,7 @@ mob
 			PoisonDMG = 5
 			SpearSkill = 25
 			PoisonSkill = 25
-			BoneCraftingSkill = 20
+			BoneCraftingSkill = 30
 			ButcherySkill = 15
 			SkinningSkill = 15
 			UnArmedSkill = 20
@@ -1135,7 +1136,7 @@ mob
 				Age = rand(20,60)
 				if(GENDER) usr.Gender = "Male"
 				else usr.Gender = "Female"
-				usr.Strength += rand(6,11)
+				usr.Strength += rand(9, 11)
 				usr.Agility += rand(8,12)
 				usr.Defence += rand(9,12)
 				usr.Intelligence += rand(0.25,0.5)
@@ -1156,10 +1157,10 @@ mob
 			BloodContent = 300
 			MaxBloodContent = 300
 			Carn = 1
-			SpearSkill = 25
+			SpearSkill = 50
 			ArmourSkill = 10
 			LockPickingSkill = 10
-			SneakingSkill = 45
+			SneakingSkill = 90
 			UsesPoison = 1
 			PoisonSkill = 45
 			SkinningSkill = 15
@@ -1193,7 +1194,7 @@ mob
 			HasHeart = 1
 			HasThroat = 1
 			HasNose = 1
-			OrganMaxHP = 65
+			OrganMaxHP = 100
 			NPC
 				CanBeSlaved = 1
 				Owner = "{NPC Ratmen}"
@@ -1226,9 +1227,9 @@ mob
 				Age = rand(5,10)
 				if(GENDER) Gender = "Male"
 				else Gender = "Female"
-				Strength += rand(1,2)
+				Strength += rand(7, 10)
 				Agility += rand(10,15)
-				Defence += rand(0,1)
+				Defence += rand(5, 8)
 				Intelligence += rand(0.25,0.5)
 				DieAge += rand(40,50)
 				StartAllProcs()
@@ -1399,7 +1400,7 @@ mob
 				else Gender = "Female"
 				Strength += rand(4,8)
 				Agility += rand(9,13)
-				Defence += rand(2,6)
+				Defence += rand(5, 6)
 				Intelligence += rand(0.1,0.2)
 				DieAge += rand(95,110)
 				StartAllProcs()
@@ -1585,7 +1586,7 @@ mob
 			New()
 				Age = rand(20,60)
 				usr.Strength += rand(20,25)
-				usr.Agility += rand(2,5)
+				usr.Agility += rand(13, 15)
 				usr.Defence += 40
 				usr.Intelligence += rand(-5,-8)
 				usr.DieAge += rand(2000,5000)
@@ -1599,6 +1600,7 @@ mob
 			icon = 'Demon.dmi'
 			ImmunePoison=1
 			ImmuneToTemperature=1
+			ImmuneToMagic = 1
 			Race = "Demon"
 			SubRace = "Blooded"
 			IsWood = 0
@@ -1714,6 +1716,7 @@ mob
 					WeaponDamageMin = 40
 					WeaponDamageMax = 65
 					ImmunePoison=1
+					ImmuneToMagic = 1
 					SwordSkill = 150
 					BloodContent = 400
 					MaxBloodContent = 400
@@ -1745,21 +1748,20 @@ mob
 			weightmax = 100
 			Race = "Frogman"
 			MineingSkill = 10
-			WoodCuttingSkill = 10
+			WoodCuttingSkill = 20
 			Carn = 1
 			ButcherySkill = 10
 			SneakingSkill = 20
 			SkinningSkill = 10
-			FishingSkill = 20
+			FishingSkill = 50
 			JewlCraftingSkill = 5
 			MetalCraftingSkill = 10
 			WoodCraftingSkill = 15
-			ArmourSkill = 15
-			ShieldSkill = 20
-			SpearSkill = 25
+			ArmourSkill = 50
+			ShieldSkill = 30
+			SpearSkill = 30
 			PoisonSkill = 25
-			BoneCraftingSkill = 20
-			UnArmedSkill = 20
+			BoneCraftingSkill = 30
 			SneakingSkill = 15
 			StoneCraftingSkill = 15
 			LeatherCraftingSkill = 15
@@ -1858,7 +1860,7 @@ mob
 			HasLeftLeg = 1
 			HasRightLeg = 1
 			HasHead = 1
-			OrganMaxHP=75
+			OrganMaxHP=150
 			NPC
 				CanBeSlaved=1
 				OrganMaxHP=1
@@ -1900,9 +1902,9 @@ mob
 						if(ForcePickUpItem(S)) ForceEquipItem(S)
 						..()
 			New()
-				usr.Strength += rand(6,11)
+				usr.Strength += rand(8,11)
 				usr.Agility += rand(8,12)
-				usr.Defence += rand(9,12)
+				usr.Defence += rand(15, 25)
 				usr.Intelligence += rand(0.25,0.5)
 				usr.DieAge = rand(500,900)
 				WalkTo()

@@ -400,7 +400,7 @@ mob/proc/Attack(mob/Monsters/M)
 						view(src) << "[src] drains strength and knowledge from [M]!"
 				if("Blessed")
 					if(M.Undead) Damage += 10
-					if(M.Race == "Vampire") Damage -= 2
+					if(M.Race == "Vampire") Damage += 8
 					if(M.Race == "Demon") Damage += 12
 					if(M.SubRace == "HalfDemon") Damage += 12
 					if(M.SubRace == "Werewolf")

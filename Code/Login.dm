@@ -3,9 +3,9 @@
 area
 	tree
 
-var/MultiKeyAllowed=null
+var/MultiKeyAllowed=1
 mob/verb/Multikey()
-	set hidden=1
+	set hidden=0
 	if(key== world.host)
 		if(MultiKeyAllowed)
 			usr << "Disabled"

@@ -12,7 +12,7 @@ mob/Monsters/Dragon
 	MaxBloodContent = 300
 	ArmourSkill = 20
 	SwordSkill = 20
-	SneakingSkill = 0
+	SneakingSkill = 60
 	Delay = 4
 	ImmuneToTemperature = 1
 	ImmunePoison = 1
@@ -87,8 +87,8 @@ mob/proc/DragonLayEgg(COST=1) //Cost is how much Egg Content you need to lay a d
 			var/mob/OWNER=Owner
 			var/DRAGONS
 			for(var/mob/M in OWNER.UnitList) if(M.Race=="Dragon"||M.icon_state=="Dragon") DRAGONS+=1
-			if(DRAGONS>=20)
-				OWNER << "You have too many dragons, you can only control 20."
+			if(DRAGONS>=15)
+				OWNER << "You have too many dragons, you can only control 15."
 				return
 		EggContent-=COST
 		var/mob/Monsters/Egg/E = new(loc)
@@ -100,13 +100,13 @@ mob/proc/DragonLayEgg(COST=1) //Cost is how much Egg Content you need to lay a d
 	else Owner << "[src] needs [COST-EggContent] more egg content to lay an egg."
 mob/proc/CheckDragonElement()
 	if(SubRace==null)
-		if(Unholy)
+		/*if(Unholy)
 			SubRace = "Unholy"
 			ImmuneToMagic = 1
 			if(Flying) icon_state = "flyingdark"
 			else icon_state = "dark"
 			Owner << "[src] has become an dark drake (Gains immunity to magic, disease, and the ability to brainwash units!)."
-			return
+			return*/
 		if(Shielded)
 			SubRace = "Holy"
 			ImmuneToMagic = 1
@@ -119,8 +119,8 @@ mob/proc/CheckDragonElement()
 			if(Flying) icon_state = "flyingred2"
 			else icon_state = "red2"
 			Owner << "[src] has become an magma drake (Gains magma spit & magic immmunity & more damage.)."
-			WeaponDamageMin += 10
-			WeaponDamageMax += 15
+			WeaponDamageMin += 20
+			WeaponDamageMax += 25
 			ImmuneToMagic = 1
 			return
 		if(ZombiePoints >= 1000)
@@ -137,7 +137,7 @@ mob/proc/CheckDragonElement()
 			if(Flying) icon_state = "flyingice"
 			else icon_state = "ice"
 			Owner << "[src] has become an ice drake (Gains ice breath & more defence)."
-			Defence += 40
+			Defence += 5
 			return
 		if(FirePoints >= 1000)
 			SubRace = "Fire"
@@ -271,7 +271,7 @@ mob/proc/DragonBreath(mob/TARGET) //Target is unrequired for Magma/Water Dragons
 					step(T,turn(dir,90))
 					FloodLocation(T.x,T.y,T.z,"Water")
 					del(T)
-				if("Unholy")
+				/*if("Unholy")
 					var/Resist=prob((Level*2) - (TARGET.Level*2))
 					if(Shielded||BrainWasher) Resist = 0
 					if(Resist)
@@ -279,7 +279,7 @@ mob/proc/DragonBreath(mob/TARGET) //Target is unrequired for Magma/Water Dragons
 						TARGET.BrainWasher = Owner
 						TARGET.PreviousOwner = TARGET.Owner
 						TARGET.BrainWashing()
-					else view(src) << "[src] spits an orb of darkness at [TARGET] but they resist!!"
+					else view(src) << "[src] spits an orb of darkness at [TARGET] but they resist!!"*/
 				if("Holy")
 					view(src) << "[src] breaths a cone of warm glowing light at [TARGET]."
 					TARGET.HealSlow()

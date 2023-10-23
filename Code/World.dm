@@ -114,12 +114,10 @@ obj/proc/BSTTrap()
 	if(src.Hole == 1)
 		for(var/mob/Monsters/M in view(0,src))
 			if(M.density == 1 && M.Flying == 0)
-				for(var/mob/KLK in world)
-					if(KLK == src.Owner)
-						for(var/mob/MK in world)
-							if(M.Owner == MK)
-								if(MK.name in KLK.AllyList || MK.Faction == KLK.Faction)
-									OGB = 1
+				var/mob/KLK = src.Owner
+				var/mob/MK = M.Owner
+				if (MK && KLK && (MK.name in KLK.AllyList || (MK.Faction == KLK.Faction && MK.Faction != "Player")))
+					OGB = 1
 				if(M.Owner == src.Owner)
 					..()
 				else
@@ -152,12 +150,10 @@ obj/proc/RibTrap()
 	if(src.Hole == 1)
 		for(var/mob/Monsters/M in view(0,src))
 			if(M.density == 1 && M.Flying == 0)
-				for(var/mob/KLK in world)
-					if(KLK == src.Owner)
-						for(var/mob/MK in world)
-							if(M.Owner == MK)
-								if(MK.name in KLK.AllyList || MK.Faction == KLK.Faction)
-									OGB = 1
+				var/mob/KLK = src.Owner
+				var/mob/MK = M.Owner
+				if (MK && KLK && (MK.name in KLK.AllyList || (MK.Faction == KLK.Faction && MK.Faction != "Player")))
+					OGB = 1
 				if(M.Owner == src.Owner)
 					..()
 				else
@@ -181,7 +177,7 @@ obj/proc/RibTrap()
 											view(src) << "<b><font color=red>[M] is stunned!<br>"
 									del(src)
 								else
-									M.SneakingSkill += 0.1
+									M.SneakingSkill += 1
 	spawn(5)
 		RibTrap()
 		return
@@ -189,12 +185,10 @@ obj/proc/StoneTrap()
 	var/OGB = 0
 	if(src.Hole == 1)
 		for(var/mob/Monsters/M in view(0,src))
-			for(var/mob/KLK in world)
-				if(src.Owner == KLK)
-					for(var/mob/MK in world)
-						if(M.Owner == MK)
-							if(MK.name in KLK.AllyList || MK.Faction == KLK.Faction)
-								OGB = 1
+			var/mob/KLK = src.Owner
+			var/mob/MK = M.Owner
+			if (MK && KLK && (MK.name in KLK.AllyList || (MK.Faction == KLK.Faction && MK.Faction != "Player")))
+				OGB = 1
 			if(M.Owner == src.Owner)
 				..()
 			else
@@ -244,7 +238,7 @@ obj/proc/StoneTrap()
 										M.HeadHP -= 10
 										del(src)
 							else
-								M.SneakingSkill += 0.1
+								M.SneakingSkill += 1
 	spawn(5)
 		StoneTrap()
 		return
@@ -253,12 +247,10 @@ obj/proc/PitTrap()
 	if(src.Hole == 1)
 		for(var/mob/Monsters/M in view(0,src))
 			if(M.density == 1 && M.Flying == 0)
-				for(var/mob/KLK in world)
-					if(src.Owner == KLK)
-						for(var/mob/MK in world)
-							if(M.Owner == MK)
-								if(MK.name in KLK.AllyList || MK.Faction == KLK.Faction)
-									OGB = 1
+				var/mob/KLK = src.Owner
+				var/mob/MK = M.Owner
+				if (MK && KLK && (MK.name in KLK.AllyList || (MK.Faction == KLK.Faction && MK.Faction != "Player")))
+					OGB = 1
 				if(M.Owner == src.Owner) ..()
 				else
 					if(M.Wagon == 0)
@@ -318,7 +310,7 @@ obj/proc/PitTrap()
 														M.Stunned = 1
 														view(src) << "<b><font color=red>[M] is stunned!<br>"
 													else
-														M.SneakingSkill += 0.1
+														M.SneakingSkill += 1
 	spawn(5)
 		PitTrap()
 		return
