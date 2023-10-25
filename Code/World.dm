@@ -116,7 +116,7 @@ obj/proc/BSTTrap()
 			if(M.density == 1 && M.Flying == 0)
 				var/mob/KLK = src.Owner
 				var/mob/MK = M.Owner
-				if (MK && KLK && (MK.name in KLK.AllyList || (MK.Faction == KLK.Faction && MK.Faction != "Player")))
+				if (MK && KLK && (MK.name in KLK.AllyList || MK.Faction == KLK.Faction))
 					OGB = 1
 				if(M.Owner == src.Owner)
 					..()
@@ -152,7 +152,7 @@ obj/proc/RibTrap()
 			if(M.density == 1 && M.Flying == 0)
 				var/mob/KLK = src.Owner
 				var/mob/MK = M.Owner
-				if (MK && KLK && (MK.name in KLK.AllyList || (MK.Faction == KLK.Faction && MK.Faction != "Player")))
+				if (MK && KLK && (MK.name in KLK.AllyList || MK.Faction == KLK.Faction))
 					OGB = 1
 				if(M.Owner == src.Owner)
 					..()
@@ -187,7 +187,7 @@ obj/proc/StoneTrap()
 		for(var/mob/Monsters/M in view(0,src))
 			var/mob/KLK = src.Owner
 			var/mob/MK = M.Owner
-			if (MK && KLK && (MK.name in KLK.AllyList || (MK.Faction == KLK.Faction && MK.Faction != "Player")))
+			if (MK && KLK && (MK.name in KLK.AllyList || MK.Faction == KLK.Faction))
 				OGB = 1
 			if(M.Owner == src.Owner)
 				..()
@@ -249,7 +249,7 @@ obj/proc/PitTrap()
 			if(M.density == 1 && M.Flying == 0)
 				var/mob/KLK = src.Owner
 				var/mob/MK = M.Owner
-				if (MK && KLK && (MK.name in KLK.AllyList || (MK.Faction == KLK.Faction && MK.Faction != "Player")))
+				if (MK && KLK && (MK.name in KLK.AllyList || MK.Faction == KLK.Faction))
 					OGB = 1
 				if(M.Owner == src.Owner) ..()
 				else
