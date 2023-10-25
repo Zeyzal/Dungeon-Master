@@ -114,10 +114,11 @@ obj/proc/BSTTrap()
 	if(src.Hole == 1)
 		for(var/mob/Monsters/M in view(0,src))
 			if(M.density == 1 && M.Flying == 0 && src.Owner != M.Owner)
-				var/mob/KLK = src.Owner
-				var/mob/MK = M.Owner
-				if (MK && KLK && (M.name in KLK.AllyList || MK.Faction == KLK.Faction))
-					OGB = 1
+				if (src.Owner && M.Owner && !istext(M.Owner))
+					var/mob/KLK = src.Owner
+					var/mob/MK = M.Owner
+					if (MK.name in KLK.AllyList || MK.Faction == KLK.Faction)
+						OGB = 1
 				if(src.HasPersonIn == 0)
 					if(OGB == 0)
 						if(M.density == 1)
@@ -147,10 +148,11 @@ obj/proc/RibTrap()
 	if(src.Hole == 1)
 		for(var/mob/Monsters/M in view(0,src))
 			if(M.density == 1 && M.Flying == 0 && src.Owner != M.Owner)
-				var/mob/KLK = src.Owner
-				var/mob/MK = M.Owner
-				if (MK && KLK && (MK.name in KLK.AllyList || MK.Faction == KLK.Faction))
-					OGB = 1
+				if (src.Owner && M.Owner && !istext(M.Owner))
+					var/mob/KLK = src.Owner
+					var/mob/MK = M.Owner
+					if (MK.name in KLK.AllyList || MK.Faction == KLK.Faction)
+						OGB = 1
 				if(src.HasPersonIn == 0)
 					if(OGB == 0)
 						if(M.density == 1)
@@ -180,10 +182,11 @@ obj/proc/StoneTrap()
 	if(src.Hole == 1)
 		for(var/mob/Monsters/M in view(0,src))
 			if (src.Owner != M.Owner)
-				var/mob/KLK = src.Owner
-				var/mob/MK = M.Owner
-				if (MK && KLK && (MK.name in KLK.AllyList || MK.Faction == KLK.Faction))
-					OGB = 1
+				if (src.Owner && M.Owner && !istext(M.Owner))
+					var/mob/KLK = src.Owner
+					var/mob/MK = M.Owner
+					if (MK.name in KLK.AllyList || MK.Faction == KLK.Faction)
+						OGB = 1
 				if(M.Wagon == 0)
 					if(src.HasPersonIn == 0)
 						if(OGB == 0)
@@ -239,10 +242,11 @@ obj/proc/PitTrap()
 	if(src.Hole == 1)
 		for(var/mob/Monsters/M in view(0,src))
 			if(M.density == 1 && M.Flying == 0 && src.Owner != M.Owner)
-				var/mob/KLK = src.Owner
-				var/mob/MK = M.Owner
-				if (MK && KLK && (MK.name in KLK.AllyList || MK.Faction == KLK.Faction))
-					OGB = 1
+				if (src.Owner && M.Owner && !istext(M.Owner))
+					var/mob/KLK = src.Owner
+					var/mob/MK = M.Owner
+					if (MK.name in KLK.AllyList || MK.Faction == KLK.Faction)
+						OGB = 1
 				if(M.Wagon == 0)
 					if(src.HasPersonIn == 0)
 						if(OGB == 0)
