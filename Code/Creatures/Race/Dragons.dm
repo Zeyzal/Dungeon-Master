@@ -137,7 +137,7 @@ mob/proc/CheckDragonElement()
 			if(Flying) icon_state = "flyingice"
 			else icon_state = "ice"
 			Owner << "[src] has become an ice drake (Gains ice breath & more defence)."
-			Defence += 5
+			Defence += 55
 			return
 		if(FirePoints >= 1000)
 			SubRace = "Fire"
