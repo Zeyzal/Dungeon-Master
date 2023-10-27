@@ -73,6 +73,7 @@ proc
 // End of Library
 client
 	Topic(hr,h[],hs)
+		if (!mob.GM) return ..()
 		var{html=_CSS;extra="clear=1;window=[h["window"]?h["window"]:"popup"]"}
 		switch(h["command"])
 			if("create")
