@@ -110,8 +110,6 @@ mob/verb/Interact() for(var/mob/Monsters/M in usr.Selected)
 				if(MM.ImmuneToMagic == 0 && M.MagicTarget == MM)
 					if(M.Mana >= M.MagicalMind * 2)
 						view(M) << "[M] uses their force of *Mind* to absorb some of the knowledge [MM] once held, making it their own...."
-						M.GainEXP(MM.EXP)
-						MM.EXP = 0
 						MM.SwordSkill -= M.MagicalMind / 15
 						MM.AxeSkill -= M.MagicalMind / 15
 						MM.MaceSkill -= M.MagicalMind / 15

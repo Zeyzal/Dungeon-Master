@@ -810,8 +810,6 @@ obj
 										for(var/mob/Monsters/MM in oview(5,M))
 											if(MM.ImmuneToMagic == 0 && M.MagicTarget == MM && src)
 												view(M) << "[M] uses their force of *Mind* to absorb some of the knowledge [MM] once held, making it their own...."
-												M.GainEXP(MM.EXP)
-												MM.EXP = 0
 												MM.SwordSkill -= M.Intelligence/2
 												MM.AxeSkill -= M.Intelligence/2
 												MM.MaceSkill -= M.Intelligence/2
