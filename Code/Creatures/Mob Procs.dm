@@ -45,9 +45,15 @@
 	if(MagicalAptitude)
 		if(Mana < MaxMana)
 			Mana += MagicalConcentration / 2
-			for(var/obj/Items/Equipment/Armour/Chestplate/ChaosRobe/C in src) if(C.suffix == "(Equipped)") Mana += 5
-			for(var/obj/Items/Equipment/Armour/Helmet/ChaosHood/C in src) if(C.suffix == "(Equipped)") Mana += 5
-			for(var/obj/Items/Equipment/Armour/Capes/ChaosCape/C in src) if(C.suffix == "(Equipped)") Mana += 5
+			for(var/obj/Items/Equipment/Armour/Chestplate/ChaosRobe/C in src) 
+				if(C.suffix == "(Equipped)") 
+					Mana += 5
+			for(var/obj/Items/Equipment/Armour/Helmet/ChaosHood/C in src) 
+				if(C.suffix == "(Equipped)") 
+					Mana += 5
+			for(var/obj/Items/Equipment/Armour/Capes/ChaosCape/C in src) 
+				if(C.suffix == "(Equipped)") 
+					Mana += 5
 		if(Mana > MaxMana) Mana = MaxMana
 	if(HP<MAXHP)
 		HP += 10

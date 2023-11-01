@@ -34,8 +34,10 @@
 				ImmuneToTemperature=1
 				Defence+=Level/5
 				if(Race=="Lizardman")
-					if(Level>40) Defence-=8
-					else Defence-=Level/5
+					if(Level>40) 
+						Defence-=8
+					else 
+						Defence-=Level/5
 				Strength+=Level/2
 				Agility+=Level/2
 				weightmax+=Level*5

@@ -114,7 +114,7 @@
 /obj/proc/SmokeMove() spawn() while(1)
 	step_rand(src)
 	sleep(10)
-atom/proc/Smoke()
+/atom/proc/Smoke()
 	if(src.OnFire)
 		var/obj/Smoke/S = new
 		S.loc = locate(src.x,src.y,src.z)
@@ -122,14 +122,15 @@ atom/proc/Smoke()
 	else
 		return
 	spawn(50) Smoke()
-atom/proc/Fire() if(IsWood)
+/atom/proc/Fire() if(IsWood)
 	var/FireResist = 0
 	if(ismob(src))
 		var/mob/M = src
 		switch(M.Race)
 			if("Dragon") return
 			if("Gargoyle") return
-		if(M.SubRace == "HalfDemon") return
+		if(M.SubRace == "HalfDemon") 
+			return
 	for(var/obj/Items/Equipment/Armour/A in src) if(A.suffix == "(Equipped)") if(A.Race == "Demon") FireResist += 20
 	if(prob(FireResist)) return
 	if(!src.OnFire)

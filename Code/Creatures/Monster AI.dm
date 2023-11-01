@@ -1,23 +1,23 @@
-mob/var/tmp/list/Hostilities=new()
-mob/proc/MakeHostile(NAME="Basic",TIME=6000)
+/mob/var/tmp/list/Hostilities=new()
+/mob/proc/MakeHostile(NAME="Basic",TIME=6000)
 	if("[NAME]" in Hostilities) return
 	Hostilities+="[NAME]"
 	if(TIME>0) spawn(TIME) Hostilities-="[NAME]"
 	return(1)
-mob/Monsters/var/tmp
+/mob/Monsters/var/tmp
 	ReturnDelay=400
 	PatrolPoint1
 	PatrolPoint2
 	HomeLoc = null
 	list/GuardRules = new
-mob/Monsters/var
+/mob/Monsters/var
 	list/Friendlies = new
-mob/Monsters/proc/StayLocal()
+/mob/Monsters/proc/StayLocal()
 	HomeLoc = loc
 	spawn() while(CanBeSlaved)
 		sleep(ReturnDelay)
 		ReturningHome=2
-mob/verb/Guard()
+/mob/verb/Guard()
 	var/list/menu = new()
 	menu += "Guard On"
 	menu += "Guard Off"
@@ -65,11 +65,11 @@ mob/verb/Guard()
 				M.GuardRules = list()
 				if(M.destination==M.PatrolPoint1 || M.destination==M.PatrolPoint2) M.destination=null
 				if(M.HomeLoc==M.PatrolPoint1 || M.HomeLoc==M.PatrolPoint2) M.HomeLoc=null
-mob/Monsters/proc/Patrol(LOC1,LOC2)
+/mob/Monsters/proc/Patrol(LOC1,LOC2)
 	PatrolPoint1=LOC1
 	PatrolPoint2=LOC2
 	HomeLoc=PatrolPoint1
-mob/Monsters/proc/Guarding(RANGE=5,RATE=10,AUTO=0) if(!Critter) if(StopDouble("Guard"))
+/mob/Monsters/proc/Guarding(RANGE=5,RATE=10,AUTO=0) if(!Critter) if(StopDouble("Guard"))
 	HomeLoc=loc
 	spawn()
 		spawn() while(HomeLoc)
@@ -92,7 +92,7 @@ mob/Monsters/proc/Guarding(RANGE=5,RATE=10,AUTO=0) if(!Critter) if(StopDouble("G
 						if(loc==PatrolPoint2) HomeLoc=PatrolPoint1
 			sleep(RATE)
 		RunningProcs-="Guard"
-mob/Monsters/proc/RandomWalk(LINKED=0) if(StopDouble("WalkTo") || LINKED)
+/mob/Monsters/proc/RandomWalk(LINKED=0) if(StopDouble("WalkTo") || LINKED)
 	if("Guard" in RunningProcs)
 		GuardWalk(1)
 		return
@@ -119,7 +119,7 @@ mob/Monsters/proc/RandomWalk(LINKED=0) if(StopDouble("WalkTo") || LINKED)
 					step_rand(src)
 					destination = LocateTarget()
 	WalkTo(1)
-mob/Monsters/proc/GuardWalk(LINKED=0) if(StopDouble("WalkTo") || LINKED) spawn()
+/mob/Monsters/proc/GuardWalk(LINKED=0) if(StopDouble("WalkTo") || LINKED) spawn()
 	spawn() while(CanBeSlaved)
 		FindGear()
 		sleep(200)
@@ -129,15 +129,21 @@ mob/Monsters/proc/GuardWalk(LINKED=0) if(StopDouble("WalkTo") || LINKED) spawn()
 			if(destination==HomeLoc) if(loc==HomeLoc) destination=null
 			if(destination) step_towards(src,destination)
 	WalkTo(1)
-mob/Monsters/proc/LocateTarget(RANGE=5) for(var/mob/Monsters/M in oview(RANGE,src))
+/mob/Monsters/proc/LocateTarget(RANGE=5) for(var/mob/Monsters/M in oview(RANGE,src))
 	var/Gunna=CanBeSlaved
-	if("Agressive" in GuardRules) Gunna=1
+	if("Agressive" in GuardRules) 
+		Gunna=1
 	if(ismob(M.Owner)) switch(Owner)
-		if("{NPC Alliance}") if(!M.Undead&&!M.Morphed&&M.SubRace!="HalfDemon"&&!M.Werepowers) Gunna=0
-		if("{NPC Undead}") if(M.Undead || M.Race==Race) Gunna=0
-		else if(M.Race == Race) Gunna=0
-	if("[M.Owner]" in Friendlies) Gunna=0
-	if("[Owner]" in M.Hostilities) Gunna=1
+		if("{NPC Alliance}") if(!M.Undead&&!M.Morphed&&M.SubRace!="HalfDemon"&&!M.Werepowers) 
+			Gunna=0
+		if("{NPC Undead}") if(M.Undead || M.Race==Race) 
+			Gunna=0
+		else if(M.Race == Race) 
+			Gunna=0
+	if("[M.Owner]" in Friendlies) 
+		Gunna=0
+	if("[Owner]" in M.Hostilities) 
+		Gunna=1
 	if(ismob(Owner)&&ismob(M.Owner))
 		var/mob/OWNERA = Owner
 		var/mob/OWNERB = M.Owner

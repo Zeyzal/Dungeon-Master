@@ -684,7 +684,8 @@
 																	C.SubRace = "Werewolf"
 																	C.WerewolfTransformation()
 																	C.Carn = 1
-																	C.Delay -= 1
+																	if (C.Delay >= 3)
+																		C.Delay -= 1
 																	C.Regen()
 																	view() << "[C] has succumbed to the terrible lycanthropy and falls under the control of [M]"
 																	var/Resist = prob(90)

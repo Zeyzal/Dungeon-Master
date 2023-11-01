@@ -373,8 +373,10 @@
 			switch(SubRace)
 				if("Werewolf")
 					Damage-=6
-					if(Werepowers) Damage-=8
-				if("HalfDemon") Damage-=8
+					if(Werepowers) 
+						Damage-=8
+				if("HalfDemon") 
+					Damage-=8
 			if(Undead) Damage-=8
 		for(var/obj/Items/Equipment/Weapon/SW in src) if(SW.suffix == "(Equipped)")
 			if(SW.Silver)
@@ -383,8 +385,10 @@
 					Damage += M.Level*0.1
 				if(M.SubRace=="Werewolf")
 					Damage += 12
-					if(M.Werepowers) Damage += M.Level*0.7
-				if(M.Undead) Damage += 12
+					if(M.Werepowers) 
+						Damage += M.Level*0.7
+				if(M.Undead) 
+					Damage += 12
 			switch(SW.Content3)
 				if("Cursed")
 					Damage += rand(-10,15)
@@ -399,21 +403,33 @@
 						M.EXPNeeded += 1
 						view(src) << "[src] drains strength and knowledge from [M]!"
 				if("Blessed")
-					if(M.Undead) Damage += 10
-					if(M.Race == "Vampire") Damage += 8
-					if(M.Race == "Demon") Damage += 12
-					if(M.SubRace == "HalfDemon") Damage += 12
+					if(M.Undead) 
+						Damage += 10
+					if(M.Race == "Vampire") 
+						Damage += 8
+					if(M.Race == "Demon") 
+						Damage += 12
+					if(M.SubRace == "HalfDemon") 
+						Damage += 12
 					if(M.SubRace == "Werewolf")
-						if(M.Werepowers) Damage += 7
-						else Damage += 3
-		if(M.Race == "Frogman") Damage*=0.80
+						if(M.Werepowers) 
+							Damage += 7
+						else 
+							Damage += 3
+		if(M.Race == "Frogman") 
+			Damage*=0.80
 		Damage*=DamageMultiplier
-		if(Damage<5) Damage=5
-		if(Delay==5) Damage*=1.25
+		if(Damage<5) 
+			Damage=5
+		if(Delay==5) 
+			Damage*=1.25
 		if(Running) switch(Delay)
-			if(3) Damage*=0.75
-			if(2) Damage*=0.66
-			if(1) Damage*=0.50
+			if(3) 
+				Damage*=0.75
+			if(2) 
+				Damage*=0.66
+			if(1)
+				Damage*=0.50
 		if(M.Race != "Spider")
 			src.HitLeftLeg = prob(4)
 			src.HitRightLeg = prob(4)

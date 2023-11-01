@@ -581,8 +581,17 @@
 											m.IsEmpty = 1
 											m.name = "Empty Bottle"
 											var/Work = prob(60)
-											if(M.MagicalAptitude == 1) Work = 1
-											if(M.SubRace) Work = 0
+											#warn Add better checks
+											if(M.WearingRing == 1)
+												view() << "[M] has betrayed the Lycan God and has been Punished...!"
+												M.DeathType = "Massive Heart Attack"
+												M.GoingToDie = 1
+												view() << "<b><font color=red>[src] has died!!"
+												M.Death()
+											if(M.MagicalAptitude == 1) 
+												Work = 1
+											if(M.SubRace) 
+												Work = 0
 											if(Work)
 												view() << "[M] is struck with extreme chest pain as its heart fails...... after a few moments it rises up and views the world with the new eyes of an undead monster!"
 												M.RaceChange("Vampire")

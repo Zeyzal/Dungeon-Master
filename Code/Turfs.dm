@@ -5555,6 +5555,7 @@ area
 										M.Defence -= 10
 										if(src.icon_state == "Diamond Ring")
 											M.Defence -= 5
+											M.ImmuneToMagic = 0
 										return
 									else
 										usr << "[M] isn't wearing a ring"
@@ -5690,7 +5691,7 @@ area
 								if (Result == "Wear")
 									if(src.suffix == "(Carrying)")
 										if(!M.WearingRing)
-											if(!M.SubRace && M.Race != "Vampire" && M.Race != "Spider" && M.Race != "Gargoyle" && M.Wagon == 0 && M.Race != "Skeleton" )
+											if(!M.SubRace && M.Race != "Vampire" && M.Race != "Spider" && M.Race != "Gargoyle" && M.Wagon == 0 && M.Race != "Skeleton" && !/mob/proc/VampireInfection )
 												M.WearingRing = 1
 												usr << "[M] puts on the ring of Lycanthropy, it bonds to their flesh and eats into their hand!"
 												M.SubRace = "Werewolf"
@@ -5700,7 +5701,8 @@ area
 												M.Defence += 15
 												M.Delay -= 1
 												M.Regen()
-												if(M.DropItem(src)) del(src)
+												if(M.DropItem(src)) 
+													del(src)
 											else
 												usr << "[M] attempts to wear the ring but it slips off their finger leaving large, bloody gashes"
 												M.BloodLoss()

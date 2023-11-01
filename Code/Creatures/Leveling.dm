@@ -164,9 +164,8 @@ mob/proc/LevelUp()
 
 		WeaponDamageMin+=MIN
 		WeaponDamageMax+=MAX
-	var
-		MaxStrength=120
-		MaxAgility=120
+	var/MaxStrength=120
+	var/MaxAgility=120
 	switch(Race)
 		if("Kobold","Ratman") MaxAgility+=20
 		if("Dwarf", "Gargoyle")
