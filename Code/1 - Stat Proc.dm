@@ -1,4 +1,4 @@
-mob/Stat()
+/mob/Stat()
 	statpanel("Units")
 	for(var/mob/Monsters/M in usr.UnitList) stat("Level [M.Level]",M)
 	statpanel("Unit Stats")

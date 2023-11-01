@@ -1,4 +1,4 @@
-atom/movable/proc/Fling(DIR=pick(NORTH,SOUTH,WEST,EAST,SOUTHEAST,SOUTHWEST,NORTHEAST,NORTHWEST),DIST=2,BLEED=0)
+/atom/movable/proc/Fling(DIR=pick(NORTH,SOUTH,WEST,EAST,SOUTHEAST,SOUTHWEST,NORTHEAST,NORTHWEST),DIST=2,BLEED=0)
 	dir=DIR
 	if(BLEED)
 		var/obj/Bloods/Blood5/B = new(loc)
@@ -11,11 +11,11 @@ atom/movable/proc/Fling(DIR=pick(NORTH,SOUTH,WEST,EAST,SOUTHEAST,SOUTHWEST,NORTH
 				var/obj/Bloods/Blood5/B2 = new(loc)
 				B2.dir = dir
 		if(istype(src,/obj/Items/Equipment/)) dir=SOUTH
-mob/proc/LimbFling(NAME) if(!Fling)
+/mob/proc/LimbFling(NAME) if(!Fling)
 	var/obj/Items/Bones/BloodyLimb/A = new(loc)
 	A.name = "[src]'s [NAME]"
 	A.Fling(DIST=2,BLEED=prob(50))
-mob/proc/BleedingPropell() if(!Fling)
+/mob/proc/BleedingPropell() if(!Fling)
 	dir = pick(NORTH,SOUTH,WEST,EAST)
 	var/obj/Bloods/Blood/B = new(loc)
 	B.dir = dir
@@ -31,7 +31,7 @@ mob/proc/BleedingPropell() if(!Fling)
 			var/obj/Bloods/Blood/B4 = new(loc)
 			B4.dir = dir
 
-mob/proc/LimbLoss()
+/mob/proc/LimbLoss()
 	switch(Race)
 		if("Devourer","Dragon","Spider") return
 		else if(!CantLoseLimbs)
@@ -63,7 +63,7 @@ mob/proc/LimbLoss()
 						Owner << "<b><font color=red>[src] crumbles into a white bonemeal!!!"
 						Death()
 			if(HasLeftLeg&&HasRightArm&&HasLeftArm&&HasRightLeg) icon_state = "Normal"
-mob/proc/BloodLoss() if(src.Race != "Gargoyle" && Race != "Skeleton")
+/mob/proc/BloodLoss() if(src.Race != "Gargoyle" && Race != "Skeleton")
 	for(var/mob/Monsters/M in range(2,src))
 		if(M.destination == src)
 			if(M.HoldingWeapon == "Dagger" && M.DaggerSkill >= 125)
@@ -76,7 +76,7 @@ mob/proc/BloodLoss() if(src.Race != "Gargoyle" && Race != "Skeleton")
 	if(src.BloodContent <= 130) src.BleedType = "Badly"
 	if(src.BloodContent <= 90) src.BleedType = "Very Badly"
 	if(src.BloodContent <= 20) src.BleedType = "Extremly"
-mob/proc/DamageType(MULTI=1,MAX=150)
+/mob/proc/DamageType(MULTI=1,MAX=150)
 	if(Race=="Human")
 		MULTI*=1.25
 		MAX=200
@@ -132,7 +132,7 @@ mob/proc/DamageType(MULTI=1,MAX=150)
 			if(src.UnArmedSkill > MAX) src.UnArmedSkill = MAX
 
 
-mob/proc/CheckDefence()
+/mob/proc/CheckDefence()
 	for(var/mob/Monsters/M in oview(1,src))
 		if(M == src.destination)
 			if(src.HitHead == 1)
@@ -218,7 +218,7 @@ mob/proc/CheckDefence()
 							M.ArmourSkill += 0.1
 						spawn(10) if(M) M.overlays -= /obj/miss/
 
-mob/proc/Combats(atom/movable/TARGET)
+/mob/proc/Combats(atom/movable/TARGET)
 	if(HoldingWeapon=="Bow") return
 	if(isobj(TARGET))
 		var/obj/M=TARGET
@@ -229,7 +229,7 @@ mob/proc/Combats(atom/movable/TARGET)
 			if(M.HP <= 0) del(M)
 		return
 	if(ismob(TARGET)) src.Attack(TARGET)
-mob/proc/Attack(mob/Monsters/M)
+/mob/proc/Attack(mob/Monsters/M)
 	var/Faint
 	var/Stun
 	if(Owner == M.Owner) return

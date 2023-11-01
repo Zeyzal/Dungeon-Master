@@ -1,35 +1,35 @@
-obj/Hud
-	DigAdd
-		icon = 'Selection.dmi'
-		icon_state = "addi"
-		layer = 11
-		name = "Add tiles to autodig selection. Hot Key - (tab)"
-		New(client/c)
-			screen_loc = "2,19"
-			c.screen += src
-		DblClick()
-			usr.digadd()
-	DigSub
-		icon = 'Selection.dmi'
-		icon_state = "subi"
-		layer = 11
-		name = "Subtract tiles from autodig selection. Hot Key - (tab)"
-		New(client/c)
-			screen_loc = "3,19"
-			c.screen += src
-		DblClick()
-			usr.digsub()
-	DigSel
-		icon = 'Selection.dmi'
-		icon_state = "autodig"
-		layer = 11
-		name = "Use selection autodig. To use you must have at least one unit selected with autodig on. Hot Key - (f5)"
-		New(client/c)
-			screen_loc = "1,19"
-			c.screen += src
-		DblClick()
-			usr.switchdig()
-mob
+
+/obj/Hud/DigAdd
+	icon = 'Selection.dmi'
+	icon_state = "addi"
+	layer = 11
+	name = "Add tiles to autodig selection. Hot Key - (tab)"
+	New(client/c)
+		screen_loc = "2,19"
+		c.screen += src
+	DblClick()
+		usr.digadd()
+/obj/Hud/DigSub
+	icon = 'Selection.dmi'
+	icon_state = "subi"
+	layer = 11
+	name = "Subtract tiles from autodig selection. Hot Key - (tab)"
+	New(client/c)
+		screen_loc = "3,19"
+		c.screen += src
+	DblClick()
+		usr.digsub()
+/obj/Hud/DigSel
+	icon = 'Selection.dmi'
+	icon_state = "autodig"
+	layer = 11
+	name = "Use selection autodig. To use you must have at least one unit selected with autodig on. Hot Key - (f5)"
+	New(client/c)
+		screen_loc = "1,19"
+		c.screen += src
+	DblClick()
+		usr.switchdig()
+/mob
 	var/autodigging = 0
 	var/adding = 1
 	proc/GetADiggers()
@@ -106,7 +106,7 @@ mob
 					O.icon_state = "subi"
 				usr << "You are now adding autodig!"
 				usr.Function = "PlaceAutodig"
-client
+/client
 	var/paintdigon
 	var/paintdigoff
 	var/blockdigon = 1

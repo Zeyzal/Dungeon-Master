@@ -38,8 +38,8 @@ proc/Swap(list/L, position1, position2)
 //	Deadron's TextProcs
 proc
 	dd_text2list(text, separator)
-		var/textlength      = lentext(text)
-		var/separatorlength = lentext(separator)
+		var/textlength      = length(text)
+		var/separatorlength = length(separator)
 		var/list/textList   = new /list()
 		var/searchPosition  = 1
 		var/findPosition    = 1

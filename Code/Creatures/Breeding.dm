@@ -1,4 +1,4 @@
-mob/Monsters/Egg //Probably should make this a sub-type of critter..
+/mob/Monsters/Egg //Probably should make this a sub-type of critter..
 	Race="Egg"
 	SubRace="Blooded"
 	icon='Eggs.dmi'
@@ -7,14 +7,14 @@ mob/Monsters/Egg //Probably should make this a sub-type of critter..
 	HumanParts = 0
 	Age=0
 	DieAge=999
-mob/var
+/mob/var
 	tmp //Reason it's temp is so as to evade saving duplicates of particular units and to not have breeding details carry in saves.
 		mob //Reason these two are named "MALE" and "FEMALE" rather than FutureFather/Mother, is simply to keep em close to the vars used in "BreedWith()"
 			CHILDMALE //Doubles as a "IsPregnent" var by use of "if(CHILDMALE)"
 			CHILDFEMALE //This is mostly used for eggs, but having it in the code allows for complicated things like having someone have someone elses kid or something.
 		CHILDTYPE //This holds the actual type value that the child will be. In most cases equal to FEMALE's racetype durring births, but needs to be set for eggs.
 		CHILDCOUNT //This holds the ammount of children that will be created upon "GiveBirth()".
-mob/proc/BreedWith(mob/TARGET,ALLOWED) spawn() //Don't want to lock up our callers on sleeps, so we spawn, that means no return values.
+/mob/proc/BreedWith(mob/TARGET,ALLOWED) spawn() //Don't want to lock up our callers on sleeps, so we spawn, that means no return values.
 	//Notably, setting "ALLOWED" is used to just skip asking for permission if your owners aren't the same.
 	var/mob/MALET
 	var/mob/FEMALET
@@ -64,7 +64,7 @@ mob/proc/BreedWith(mob/TARGET,ALLOWED) spawn() //Don't want to lock up our calle
 					else
 						FEMALET.Owner << "[FEMALET.Owner] is still recovering from the last egg she layed."
 				else FEMALET.Breeding(MALET,FEMALET) //FEMALET is both src, and an argument in traditional cases.
-mob/proc/Breeding(mob/MALET,mob/FEMALET,TIME=3000) //src is the one having the kid, the arguments are just for setting statistics.
+/mob/proc/Breeding(mob/MALET,mob/FEMALET,TIME=3000) //src is the one having the kid, the arguments are just for setting statistics.
 	var/WasSet //Quick little var to fix up some buggyness.
 	if(!FEMALET)
 		WasSet=1
@@ -95,7 +95,7 @@ mob/proc/Breeding(mob/MALET,mob/FEMALET,TIME=3000) //src is the one having the k
 	if(WasSet) FEMALET=null //As a result we follow the old method of override.
 //		RebuildOverlays() //Adding the Preg overlay.
 	spawn(TIME) GiveBirth() //While spawning you have a chance to change child details as they're attatched to src rather than this proc.
-mob/proc/GiveBirth() //Uses CHILDMALE and CHILDFEMALE rather than args, src is only used for deletion in the case of being an egg.
+/mob/proc/GiveBirth() //Uses CHILDMALE and CHILDFEMALE rather than args, src is only used for deletion in the case of being an egg.
 	//Added a few emergancy override details for if a perent is deleted. GiveBirth() will now still operate without CHILDMALE and CHILDFEMALE.
 	if(CHILDMALE&&CHILDFEMALE==null) CHILDFEMALE=CHILDMALE
 	if(CHILDMALE==null&&CHILDFEMALE) CHILDMALE=CHILDFEMALE
@@ -140,7 +140,7 @@ mob/proc/GiveBirth() //Uses CHILDMALE and CHILDFEMALE rather than args, src is o
 		CHILDTYPE=null
 		CHILDCOUNT=null
 		RebuildOverlays()
-mob/proc/ApplyOrgans()
+/mob/proc/ApplyOrgans()
 	for(var/obj/Items/Shafts/EngineeredOrgan/E in src)
 		switch(E.Content2)
 			if("Strength")

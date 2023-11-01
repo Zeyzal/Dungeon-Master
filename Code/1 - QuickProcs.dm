@@ -1,11 +1,13 @@
-mob/var/tmp/list/RunningProcs=new()
+/mob/var/tmp/list/RunningProcs=new()
 mob/proc/StopDouble(NAME="Basic")
-	if("[NAME]" in RunningProcs) return
+	if("[NAME]" in RunningProcs) 
+		return
 	RunningProcs+="[NAME]"
 	return(1)
-mob/var/tmp/list/CoolDowns=new() //Temporary, meaning all cooldowns are clear when a unit is reconstructed from a save file.
-mob/proc/CoolDown(NAME="Basic",TIME=150) //Can be called without using arguments to have a 15 second generic cooldown.
-	if("[NAME]" in CoolDowns) return //Returns null, thus saying "no" to an "if(CoolDown())" case.
+/mob/var/tmp/list/CoolDowns=new() //Temporary, meaning all cooldowns are clear when a unit is reconstructed from a save file.
+/mob/proc/CoolDown(NAME="Basic",TIME=150) //Can be called without using arguments to have a 15 second generic cooldown.
+	if("[NAME]" in CoolDowns) 
+		return //Returns null, thus saying "no" to an "if(CoolDown())" case.
 	if(TIME>0)
 		CoolDowns+="[NAME]" //Makes it a text string and adds to active cooldowns.
 		spawn(TIME) CoolDowns-="[NAME]" //Removes from active cooldowns after TIME.
@@ -23,7 +25,7 @@ proc/Event(NAME="Basic",TIME=150) //Time > 0 is a timer, Time = 0 is a trigger, 
 
 
 
-mob/var/tmp/list //Correct this later, might be causing excess process on mob creations for non-player mobs too...
+/mob/var/tmp/list //Correct this later, might be causing excess process on mob creations for non-player mobs too...
 	Group1=new()
 	Group2=new()
 	Group3=new()
@@ -33,8 +35,8 @@ mob/var/tmp/list //Correct this later, might be causing excess process on mob cr
 	Group7=new()
 	Group8=new()
 	Group9=new()
-mob/var/tmp/LastQuickButtonPress=null
-mob/verb
+/mob/var/tmp/LastQuickButtonPress=null
+/mob/verb
 	Quick(Number as num,Action as text)
 		var/list/LIST=new()
 		if(Action!="Set") switch(Number)

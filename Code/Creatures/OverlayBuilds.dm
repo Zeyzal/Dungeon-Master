@@ -1,10 +1,10 @@
-atom/movable/var
+/atom/movable/var
 	Beard=null
 	Hair=null
-mob/proc/AddTurnedOverlay(icon/ICON)
+/mob/proc/AddTurnedOverlay(icon/ICON)
 	ICON.Turn(90)
 	overlays+=ICON
-mob/proc/RebuildOverlays()
+/mob/proc/RebuildOverlays()
 	overlays = list()
 	if(IsMist) return
 	if(!Critter) if(Gender=="Female") if(!Werepowers) switch(Race)

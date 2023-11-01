@@ -1,33 +1,33 @@
-obj/Items/var
-	FoodPower=100
+/obj/Items
+	var/FoodPower=100
 
-obj/Items/Food
+/obj/Items/Food
 	icon='Food.dmi'
 	ItemType="Food"
 	New() ItemDecay()
 	weight = 10
-	Cheese
-		icon_state = "Cheese"
-		desc = "This is a chunk of cheese, it can be eaten"
-	Grape
-		icon_state = "Grape"
-		desc = "This is a grape, once eaten it will provide a seed, it can also be used to create wines."
-		FoodPower=30
-	Tomato
-		icon_state = "Tomato"
-		desc = "This is a tomato, it can be used as food and will provide seeds as well."
-		FoodPower=50
-	Fungus
-		icon_state = "Fungus"
-		desc = "This is a chunk of fungus, it can be eaten by some creatures such as Kobolds and Goblins"
-	Meat
-		icon_state = "RawMeat"
-		desc = "This is a chunk of meat, it can be eaten."
-		FoodPower=125
-		Cooked_Meat //Just for quick create.
-			icon_state="CookedMeat"
-			FoodPower=150
-obj/Items/Food/DblClick()
+/obj/Items/Food/Cheese
+	icon_state = "Cheese"
+	desc = "This is a chunk of cheese, it can be eaten"
+/obj/Items/Food/Grape
+	icon_state = "Grape"
+	desc = "This is a grape, once eaten it will provide a seed, it can also be used to create wines."
+	FoodPower=30
+/obj/Items/Food/Tomato
+	icon_state = "Tomato"
+	desc = "This is a tomato, it can be used as food and will provide seeds as well."
+	FoodPower=50
+/obj/Items/Food/Fungus
+	icon_state = "Fungus"
+	desc = "This is a chunk of fungus, it can be eaten by some creatures such as Kobolds and Goblins"
+/obj/Items/Food/Meat
+	icon_state = "RawMeat"
+	desc = "This is a chunk of meat, it can be eaten."
+	FoodPower=125
+	Cooked_Meat //Just for quick create.
+		icon_state="CookedMeat"
+		FoodPower=150
+/obj/Items/Food/DblClick()
 	if(ismob(loc))
 		var/mob/M=loc
 		if(M.Owner!=usr) return
@@ -47,7 +47,7 @@ obj/Items/Food/DblClick()
 				usr<<"" //just the same as including a "<br>" at the end, stops people from getting as confused when looking at lots of items.
 			if("Drop")M.DropItem(src)
 	else if(!suffix) for(var/mob/Monsters/M in usr.Selected) if(M.PickUpItem(src,1)) return(1)
-mob/proc/EatItem(obj/Items/ITEM) if(ITEM.loc==src) if(ITEM.suffix=="(Carrying)")
+/mob/proc/EatItem(obj/Items/ITEM) if(ITEM.loc==src) if(ITEM.suffix=="(Carrying)")
 	var/Healthy=1
 	switch(ITEM.icon_state)
 		if("RawMeat") if(!Carn) Healthy=0

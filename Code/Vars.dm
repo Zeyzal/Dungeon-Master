@@ -1,4 +1,4 @@
-mob/proc
+/mob/proc
 	textlist(var/textlist)
 		writing=list();for(var/t=1,t<=length(textlist),t++)writing+=copytext(textlist,t,t+1)
 	Text(mob/m,var/x,var/y,var/offx,var/offy,var/t)
@@ -12,7 +12,7 @@ mob/proc
 				offx+=8
 				if(offx >= 32) {/*sleep(0.1);*/offx-=32 ; x++}
 var/writing
-mob/proc/PillarPowerup() if(ismob(Owner))
+/mob/proc/PillarPowerup() if(ismob(Owner))
 	var/mob/M = Owner
 	for(var/obj/PowerupPillar/P in world) if(M.Faction == P.Content2)
 		Strength += P.Strength
@@ -21,7 +21,7 @@ mob/proc/PillarPowerup() if(ismob(Owner))
 		Defence += P.Defence
 		Intelligence += P.Intelligence
 		weightmax += P.weightmax
-mob/proc/Meditation() spawn()
+/mob/proc/Meditation() spawn()
 	if(Meditating)
 		Meditating = 0
 		Owner << "[src] prepares to stop meditating."
@@ -57,7 +57,7 @@ mob/proc/Meditation() spawn()
 			view(src) << "[src] finishes meditating and stands up."
 			RunningProcs-="Meditation"
 			CanWalk = 1
-mob/proc/CacoonTrap()
+/mob/proc/CacoonTrap()
 	for(var/mob/Monsters/X in range(4,src))
 		var/OGB = 0
 		if(X.Owner != src.Owner)
@@ -81,7 +81,7 @@ mob/proc/CacoonTrap()
 			src.Owner << "<b><font color=red><font size=3>[src] has detected an intruder at [src.x],[src.y],[src.z]!"
 			del src
 	spawn(5) src.CacoonTrap()
-mob/proc/SolarPowered()
+/mob/proc/SolarPowered()
 	if(night == 0)
 		src.Hunger += 1
 		if(src.Hunger >= 100)
@@ -94,7 +94,7 @@ mob/proc/SolarPowered()
 			src.Tiredness = 100
 	spawn(100)
 		src.SolarPowered()
-mob/proc/Running() if(!Running && Delay > 1)
+/mob/proc/Running() if(!Running && Delay > 1)
 	view(src) << "[src] starts to run!"
 	Running = 1
 	Delay -= 1
@@ -104,7 +104,7 @@ mob/proc/Running() if(!Running && Delay > 1)
 		view(src) << "[src] stops running!"
 		spawn(100)
 		Running = 0
-obj/proc/Portal()
+/obj/proc/Portal()
 	for(var/mob/M in view(0,src))
 		if(M.loc != locate(M.x,M.y,4))
 			M.loc = locate(M.x,M.y-1,4)
@@ -135,7 +135,7 @@ obj/proc/Portal()
 	spawn(10)
 		Portal()
 		return
-obj/proc/PlantRegen()
+/obj/proc/PlantRegen()
 	if(src.Content <= 4)
 		src.Content += 1
 		if(src.Content >= 1)
@@ -166,11 +166,11 @@ obj/proc/PlantRegen()
 	spawn(1200)
 		src.PlantRegen()
 		return
-obj/proc/AstralPortal()
+/obj/proc/AstralPortal()
 	for(var/mob/M in view(0,src))
 		var/obj/AstralPortal/A
 		M.loc = A.GoesTo
-mob/proc/FindItems()
+/mob/proc/FindItems()
 	for(var/obj/Items/I in view(6,src))
 		if(I.suffix == null)
 			if(I.Door == 0)
@@ -191,17 +191,17 @@ mob/proc/FindItems()
 		step_rand(src)
 	spawn(10) FindItems()
 
-mob/proc/TurnOffAttack()
+/mob/proc/TurnOffAttack()
 	src.destination = null
 	spawn(500) TurnOffAttack()
 
-mob/proc/PetFollow()
+/mob/proc/PetFollow()
 	if(destination) step_towards(src,src.destination)
 	else return
 	spawn(5) PetFollow()
 
 
-mob/proc/Ready()
+/mob/proc/Ready()
 	src.Owner << "<b><font color=purple>[src]'s egg sack begins to swell she may now create a lair!"
 	src.icon = 'SpiderQueenMature.dmi'
 	src.icon_state = "Normal"
@@ -211,7 +211,7 @@ mob/proc/Ready()
 
 
 
-mob/proc/Detail()
+/mob/proc/Detail()
 	for(var/mob/Monsters/M in usr.Selected)
 		var/mob/Test/left = new
 		left.loc = locate(M.x-1,M.y,M.z)
@@ -333,20 +333,20 @@ mob/proc/Detail()
 		del(top)
 		del(left)
 		del(right)
-mob/proc/Save()
+/mob/proc/Save()
 	var/sav = "players/[src.ckey]_save.sav"
 	var/savefile/S = new(sav)
 	S["Kills"] << src.Kills
 	S["Faction"] << src.Faction
 	S["IsClanLeader"] << src.IsClanLeader
-mob/proc/Load()
+/mob/proc/Load()
 	var/sav = "players/[src.ckey]_save.sav"
 	if(length(file(sav)))
 		var/savefile/S = new(sav)
 		S["Kills"] >> src.Kills
 		S["Faction"] >> src.Faction
 		S["IsClanLeader"] >> src.IsClanLeader
-mob/proc/Dig()
+/mob/proc/Dig()
 	if(Dig)
 		if(src.Sleeping == 0)
 			for(var/obj/DigAt/D in oview(src))
@@ -359,7 +359,7 @@ mob/proc/Dig()
 	else
 		return
 	spawn(1) Dig()
-mob/proc/Heat()
+/mob/proc/Heat()
 	for(var/mob/Monsters/M in view(4,src)) if(M.Coldness >= 0) M.Coldness = 0
 	for(var/turf/grounds/KKG in view(1,src))
 		if(KKG.OnFire == 0)
@@ -742,13 +742,13 @@ atom
 		MAXHP
 		weight = 0
 		weightmax = 0
-obj/proc/TowerCapGrow()
+/obj/proc/TowerCapGrow()
 	sleep(1000)
 	var/mob/Monsters/Critters/TowerCap/C = new
 	C.loc = src.loc
 	del(src)
 	return
-obj/proc/GrapeGrow()
+/obj/proc/GrapeGrow()
 	sleep(1000)
 	if(Season != "Winter")
 		var/obj/Items/Plants/GrapeVine/T = new
@@ -756,7 +756,7 @@ obj/proc/GrapeGrow()
 		T.name = "Grape Vine Plant"
 		del(src)
 	else del(src)
-obj/proc/AcidSpray()
+/obj/proc/AcidSpray()
 	if(src.BloodAcidity >= 1)
 		for(var/mob/Monsters/M in range(0,src))
 			if(M.BloodAcidity == 0)
@@ -786,7 +786,7 @@ obj/proc/AcidSpray()
 			src.Undead = 1
 	spawn(20)
 		src.AcidSpray()
-obj/proc/TomatoGrow()
+/obj/proc/TomatoGrow()
 	sleep(1000)
 	if(Season != "Winter")
 		var/obj/Items/Plants/TomatoPlant/T = new
@@ -798,14 +798,14 @@ obj/proc/TomatoGrow()
 			T.HasPlantIn = 0
 			del(src)
 	return
-obj/proc/Seek()
+/obj/proc/Seek()
 	if(src.Target)
 		walk_towards(src,src.Target,2)
 	else
 		src.BowSkill = 0
 		return
 	spawn(0.1) Seek()
-obj/proc/GarlicGrow()
+/obj/proc/GarlicGrow()
 	sleep(1000)
 	if(Season != "Winter")
 		var/obj/Items/Plants/GarlicPlant/T = new
@@ -817,7 +817,7 @@ obj/proc/GarlicGrow()
 			T.HasPlantIn = 0
 			del(src)
 	return
-obj/proc/PoisonSporeGrow()
+/obj/proc/PoisonSporeGrow()
 	sleep(750)
 	if(src)
 		for(var/turf/T in view(0,src))
@@ -827,7 +827,7 @@ obj/proc/PoisonSporeGrow()
 					P.loc = src.loc
 	del(src)
 	return
-obj/proc/CarnGrow()
+/obj/proc/CarnGrow()
 	sleep(750)
 	if(src)
 		for(var/turf/T in view(0,src))
@@ -837,7 +837,7 @@ obj/proc/CarnGrow()
 					P.loc = src.loc
 	del(src)
 	return
-obj/proc/TreeGrow()
+/obj/proc/TreeGrow()
 	sleep(1000)
 	if(Season != "Winter")
 		for(var/turf/T in view(0,src))
@@ -891,7 +891,7 @@ obj/proc/TreeGrow()
 				T.Bamboo = 1
 	del(src)
 	return
-mob/proc/Struggle()
+/mob/proc/Struggle()
 	if(src)
 		for(var/obj/Items/Traps/PitTrap/P in view(0,src))
 			if(src.InHole == 1)
@@ -907,7 +907,7 @@ mob/proc/Struggle()
 			else
 				return
 	spawn(100) Struggle()
-mob/proc/CreateZombie()
+/mob/proc/CreateZombie()
 	spawn(500)
 		if(src)
 			src.icon = turn(src.icon,270)
@@ -927,7 +927,7 @@ mob/proc/CreateZombie()
 			range(8,src) << "<font color = teal>[src] begins to twitch, after a moment, they rise up from the dead and begin to walk!<br>"
 			Z.Owner << "<font color = teal>A Zombie has risen at [Z.x],[Z.y],[Z.z]<br>"
 			del (src)
-obj/proc/TomatoDecay()
+/obj/proc/TomatoDecay()
 	spawn(19000)
 	if(src.suffix == null)
 		for(var/turf/t in view(0,src))
@@ -937,13 +937,13 @@ obj/proc/TomatoDecay()
 		del(src)
 	else
 		src.TomatoDecay()
-obj/proc/ItemDecay()
+/obj/proc/ItemDecay()
 	spawn(19000)
 	if(src.suffix == null)
 		del(src)
 	else
 		src.ItemDecay()
-mob/proc/Infection(var/mob/InfectorOwner)
+/mob/proc/Infection(var/mob/InfectorOwner)
 	if(src.Race != "Gargoyle")
 		if(src.ImmuneToDevourer == 0)
 			src.Infects = 1
@@ -984,7 +984,7 @@ mob/proc/Infection(var/mob/InfectorOwner)
 									I.suffix = null
 								del(src)
 								return
-mob/proc/Zombie()
+/mob/proc/Zombie()
 	if(src)
 		if(src.Owner)
 			if(src.icon_state == "NoLeftArm")
@@ -1034,18 +1034,18 @@ mob/proc/Zombie()
 				src.HasLeftArm = 0
 				src.HasRightLeg = 0
 				src.HasLeftLeg = 0
-mob/proc/BodyDecay()
+/mob/proc/BodyDecay()
 	spawn(4000)
 	if(src.suffix == null)
 		del(src)
 	else
 		src.BodyDecay()
-mob/proc/FishDecay()
+/mob/proc/FishDecay()
 	spawn(500)
 		if(src.suffix == null)
 			del(src)
 
-obj/proc/DoorCraft()
+/obj/proc/DoorCraft()
 	switch(CraftRank)
 		if("Poor Quality") HP = rand(400,500)
 		if("Average Quality") HP = rand(600,650)
@@ -1057,7 +1057,7 @@ obj/proc/DoorCraft()
 		if("Legendary Quality") HP = rand(1300,1350)
 	name = "[src] - [src.CraftRank]"
 	desc = "this is a [src] it looks like it could take [src.HP] Damage."
-obj/proc/FurnitureCraft()
+/obj/proc/FurnitureCraft()
 	switch(CraftRank)
 		if("Poor Quality") CR = rand(1,5)
 		if("Average Quality") CR = rand(5,10)
@@ -1069,7 +1069,7 @@ obj/proc/FurnitureCraft()
 		if("Legendary Quality") CR = rand(127,138)
 	name = "[src] - [CraftRank]"
 	desc = "this is [src] it has a impressiveness rating of [src.CR]."
-obj/proc/TrainCraft()
+/obj/proc/TrainCraft()
 	switch(CraftRank)
 		if("Poor Quality") Content3 = 1.5
 		if("Average Quality") Content3 = 1.6
@@ -1081,7 +1081,7 @@ obj/proc/TrainCraft()
 		if("Legendary Quality") Content3 = 2
 	name = "[src] - [CraftRank]"
 	desc = "this is a [src] it grants [Content3] experience per hit."
-obj/proc/MetalWeaponCraft()
+/obj/proc/MetalWeaponCraft()
 	switch(CraftRank)
 		if("Poor Quality")
 			WeaponDamageMin = 15
@@ -1117,23 +1117,23 @@ obj/proc/MetalWeaponCraft()
 	if(Silver)
 		WeaponDamageMin-=5
 		WeaponDamageMax-=5
-obj/proc/BoneWeaponCraft()
+/obj/proc/BoneWeaponCraft()
 	MetalWeaponCraft()
 	WeaponDamageMin-=5
 	WeaponDamageMax+=5
-obj/proc/AdamantiumWeaponCraft()
+/obj/proc/AdamantiumWeaponCraft()
 	CraftRank="Legendary Quality"
 	WeaponDamageMin = 30
 	WeaponDamageMax = 40
 	name = "[name] - [src.CraftRank]"
-obj/proc/AdamantiumArmourCraft()
+/obj/proc/AdamantiumArmourCraft()
 	CraftRank="Legendary Quality"
 	Defence = 18.5
 	name = "[src] - [CraftRank]"
 
 //Base defence of 20, plus 10 for holy shield, then rare cape + 5 copies of armor.
 //Thus, 40-ish base defence, aiming for 50 room from 250
-obj/proc/MetalArmourCraft()
+/obj/proc/MetalArmourCraft()
 	switch(CraftRank)
 		if("Poor Quality") Defence = 10
 		if("Average Quality") Defence = 11
@@ -1146,7 +1146,7 @@ obj/proc/MetalArmourCraft()
 		if("Holy Quality") Defence = 17
 		if("Unholy Quality") Defence = 18
 	name = "[src] - [CraftRank]"
-obj/proc/BoneArmourCraft()
+/obj/proc/BoneArmourCraft()
 	switch(CraftRank)
 		if("Poor Quality") Defence = 5
 		if("Average Quality") Defence = 6

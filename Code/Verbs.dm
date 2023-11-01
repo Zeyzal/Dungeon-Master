@@ -1,12 +1,12 @@
-atom/proc/Safe()
+/atom/proc/Safe()
 	spawn(400) src.IsWood = 1
 
 
 
-turf/proc/SparkleGlow()
+/turf/proc/SparkleGlow()
 	src.overlays += /obj/sparkle/
 	spawn(15) src.overlays -= /obj/sparkle/
-turf/proc/ForceField()
+/turf/proc/ForceField()
 	if(src.density == 0)
 		for(var/mob/Monsters/M in src) return
 		src.overlays += /obj/forcefield/
@@ -14,7 +14,7 @@ turf/proc/ForceField()
 		spawn(300)
 			src.overlays -= /obj/forcefield/
 			src.density = 0
-turf/proc/ForestGrowth()
+/turf/proc/ForestGrowth()
 	var/GrowGrow = prob(4)
 	if(GrowGrow)
 		for(var/turf/T in range(5,src))
@@ -42,7 +42,7 @@ turf/proc/ForestGrowth()
 						return
 	else
 		return
-turf/proc/MeteorStrike()
+/turf/proc/MeteorStrike()
 	switch(rand(1,8))
 		if(1)
 			src.icon = 'Lava.dmi'
@@ -88,14 +88,14 @@ turf/proc/MeteorStrike()
 		if(8)
 			for(var/mob/Monsters/MM in view(0,src)) MM.Fire()
 			for(var/turf/grounds/GG in view(0,src)) GG.Fire()
-mob/proc/FlameAttack()
+/mob/proc/FlameAttack()
 	if(src.destination in view(1,src))
 		view() << "[src] breathes fire over [src.destination]"
 		var/obj/Fire/F = new
 		F.loc = src.loc
 		F.dir = src.dir
 	spawn(750) FlameAttack()
-obj/proc/Flame() if(IsWood)
+/obj/proc/Flame() if(IsWood)
 	if(ismob(src)) return
 	for(var/atom/T in view(2,src))
 		if(T.OnFire == 0)
@@ -110,8 +110,8 @@ obj/proc/Flame() if(IsWood)
 			del(src)
 			return
 	spawn(20) Flame()
-obj/proc/DeleteSmoke() spawn(30) del(src)
-obj/proc/SmokeMove() spawn() while(1)
+/obj/proc/DeleteSmoke() spawn(30) del(src)
+/obj/proc/SmokeMove() spawn() while(1)
 	step_rand(src)
 	sleep(10)
 atom/proc/Smoke()
@@ -259,7 +259,7 @@ mob/verb/StopAll() for(var/mob/Monsters/M in usr.Selected)
 		spawn(50)
 			M.BowOn = 0
 			M.PracticeSkill = 0
-mob/proc/Close()
+/mob/proc/Close()
 	if(src.Up == 0)
 		src.Up = 1
 		Building(src)
@@ -1271,7 +1271,7 @@ mob/verb/PlaceTapestry()
 	else
 		usr.Function = "Tapestry"
 		usr << "Now placing/removing tapestries. Single Click a wall near a selected unit."
-mob/proc/CreatePotion()
+/mob/proc/CreatePotion()
 	var/mob/WorkShops/PotionStation/Left/L = new
 	L.loc = locate(src.x-1,src.y,src.z)
 	L.name = "Potion Station"
@@ -1280,7 +1280,7 @@ mob/proc/CreatePotion()
 	R.loc = locate(src.x,src.y,src.z)
 	R.name = "Potion Station"
 	src.WoodCraftingSkill += 1
-mob/proc/CreateBone()
+/mob/proc/CreateBone()
 	var/mob/WorkShops/BoneCraft/Left/L = new
 	L.loc = locate(src.x-1,src.y,src.z)
 	L.name = "BoneCraftingStation"
@@ -1289,7 +1289,7 @@ mob/proc/CreateBone()
 	R.loc = locate(src.x,src.y,src.z)
 	R.name = "BoneCraftingStation"
 	src.WoodCraftingSkill += 1
-mob/proc/CreatePoison()
+/mob/proc/CreatePoison()
 	var/mob/WorkShops/PoisonStation/Left/L = new
 	L.loc = locate(src.x-1,src.y,src.z)
 	L.name = "PoisonStation"
@@ -1298,7 +1298,7 @@ mob/proc/CreatePoison()
 	R.loc = locate(src.x,src.y,src.z)
 	R.name = "PoisonStation"
 	src.WoodCraftingSkill += 1
-mob/proc/CreateWorkShopLeather()
+/mob/proc/CreateWorkShopLeather()
 	var/mob/WorkShops/LeatherWorks/Left/L = new
 	L.loc = locate(src.x-1,src.y,src.z)
 	L.name = "LeatherCraftingStation"
@@ -1307,7 +1307,7 @@ mob/proc/CreateWorkShopLeather()
 	R.loc = locate(src.x,src.y,src.z)
 	R.name = "LeatherCraftingStation"
 	src.WoodCraftingSkill += 1
-mob/proc/CreateCarpentry()
+/mob/proc/CreateCarpentry()
 	var/mob/WorkShops/Carpentry/Left/L = new
 	L.loc = locate(src.x-1,src.y,src.z)
 	L.name = "CarpentryCraftingStation"
@@ -1316,7 +1316,7 @@ mob/proc/CreateCarpentry()
 	R.loc = locate(src.x,src.y,src.z)
 	R.name = "CarpentryCraftingStation"
 	src.WoodCraftingSkill += 1
-mob/proc/CreateSmelter()
+/mob/proc/CreateSmelter()
 	var/mob/WorkShops/Smelters/Left/L = new
 	L.loc = locate(src.x-1,src.y,src.z)
 	L.name = "SmelterStation"
@@ -1325,7 +1325,7 @@ mob/proc/CreateSmelter()
 	R.loc = locate(src.x,src.y,src.z)
 	R.name = "SmelterStation"
 	src.StoneCraftingSkill += 1
-mob/proc/CreatePit()
+/mob/proc/CreatePit()
 	var/obj/Items/Traps/PitTrap/L = new
 	L.loc = src.loc
 	L.Owner = src.Owner
@@ -1335,35 +1335,35 @@ mob/proc/CreatePit()
 			L.icon = null
 			L.Hole = 1
 	src.StoneCraftingSkill += 1
-mob/proc/CreateRib()
+/mob/proc/CreateRib()
 	var/obj/Items/Traps/RibTrap/L = new
 	L.loc = src.loc
 	L.Owner = src.Owner
 	L.Hole = 1
 	L.name = "Rib Trap"
 	src.BoneCraftingSkill += 1
-mob/proc/CreateBST()
+/mob/proc/CreateBST()
 	var/obj/Items/Traps/BST/L = new
 	L.loc = src.loc
 	L.Owner = src.Owner
 	L.Hole = 1
 	L.name = "Bone Spike Trap"
 	src.BoneCraftingSkill += 1
-mob/proc/CreateCacoonTrap()
+/mob/proc/CreateCacoonTrap()
 	var/obj/Items/Traps/CacoonTrap/L = new
 	L.loc = src.loc
 	L.Owner = src.Owner
 	L.Hole = 1
 	L.name = "Cacoon Trap"
 	src.BoneCraftingSkill += 1
-mob/proc/CreateStone()
+/mob/proc/CreateStone()
 	var/obj/Items/Traps/StoneTrap/L = new
 	L.loc = src.loc
 	L.Owner = src.Owner
 	L.Hole = 1
 	L.name = "Stone Fall Trap"
 	src.StoneCraftingSkill += 1
-mob/proc/CreateForge()
+/mob/proc/CreateForge()
 	var/mob/WorkShops/Forge/Left/L = new
 	L.loc = locate(src.x-1,src.y,src.z)
 	L.name = "ForgeStation"
@@ -1372,7 +1372,7 @@ mob/proc/CreateForge()
 	R.loc = locate(src.x,src.y,src.z)
 	R.name = "ForgeStation"
 	src.StoneCraftingSkill += 1
-mob/proc/CreateKit()
+/mob/proc/CreateKit()
 	var/mob/WorkShops/Kitchen/Left/L = new
 	L.loc = locate(src.x-1,src.y,src.z)
 	L.name = "Kitchen"
@@ -1381,7 +1381,7 @@ mob/proc/CreateKit()
 	R.loc = locate(src.x,src.y,src.z)
 	R.name = "Kitchen"
 	src.WoodCraftingSkill += 1
-mob/proc/CreateGem()
+/mob/proc/CreateGem()
 	var/mob/WorkShops/GemCutter/Left/L = new
 	L.loc = locate(src.x-1,src.y,src.z)
 	L.name = "GemCutter"
@@ -1391,7 +1391,7 @@ mob/proc/CreateGem()
 	R.name = "GemCutter"
 	src.StoneCraftingSkill += 1
 
-mob/proc/CreateMasonary()
+/mob/proc/CreateMasonary()
 	var/mob/WorkShops/Masonary/Left/L = new
 	L.loc = locate(src.x-1,src.y,src.z)
 	L.name = "Masonary"
@@ -1400,7 +1400,7 @@ mob/proc/CreateMasonary()
 	R.loc = locate(src.x,src.y,src.z)
 	R.name = "Masonary"
 	src.StoneCraftingSkill += 1
-mob/proc/CreateMelter()
+/mob/proc/CreateMelter()
 	var/mob/WorkShops/Melter/Left/L = new
 	L.loc = locate(src.x-1,src.y,src.z)
 	L.name = "Melter"
@@ -1409,7 +1409,7 @@ mob/proc/CreateMelter()
 	R.loc = locate(src.x,src.y,src.z)
 	R.name = "Melter"
 	src.StoneCraftingSkill += 1
-mob/proc/StopWalk()
+/mob/proc/StopWalk()
 	if(src.Wagon == 0)
 		src.WalkNumber += 1
 		src.CanWalk = 0
@@ -1420,7 +1420,7 @@ mob/proc/StopWalk()
 				src.Stunned = 0
 				src.CanWalk = 1
 			return
-mob/proc/StunnedWalk()
+/mob/proc/StunnedWalk()
 	if(src.Wagon == 0)
 		src.WalkNumber += 1
 		view(src) << "[src] is stunned!"
@@ -1432,17 +1432,17 @@ mob/proc/StunnedWalk()
 				src.CanWalk = 1
 				view(src) << "[src] is no longer stunned."
 			return
-mob/proc/Slowdown2()
+/mob/proc/Slowdown2()
 	if(src.Wagon == 0)
 		src.Delay += 5
 		spawn(50)
 			src.Delay -= 5
 			return
-mob/proc/LegendView() src << browse(Legends)
+/mob/proc/LegendView() src << browse(Legends)
 mob/verb/Legends() usr.LegendView()
-obj/proc/Death() if(src.HP <= 0) del(src)
+/obj/proc/Death() if(src.HP <= 0) del(src)
 
-mob/proc/FightSound()
+/mob/proc/FightSound()
 	spawn(5)
 		if(src.HoldingWeapon)
 			var/S = rand(1,3)
@@ -1452,7 +1452,7 @@ mob/proc/FightSound()
 				view() << '2.wav'
 			if(S == 3)
 				view() << '3.wav'
-mob/proc/FightSound2()
+/mob/proc/FightSound2()
 	spawn(5)
 		if(!HoldingWeapon)
 			var/S = rand(1,3)

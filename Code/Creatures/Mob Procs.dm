@@ -1,4 +1,4 @@
-mob/Monsters/proc/StartAllProcs()
+/mob/Monsters/proc/StartAllProcs()
 	FullHeal() //Before ANY other procs in case it could mean death.
 	RebuildOverlays()
 	if(Race!="Gargoyle" && Race!="Skeleton")
@@ -20,9 +20,8 @@ mob/Monsters/proc/StartAllProcs()
 				if("Werewolf")
 					Regen()
 					WerewolfTransformation()
-atom/var/tmp/destination
-mob/Monsters/proc/WalkTo(LINKED=1) if(StopDouble("WalkTo") || LINKED) spawn()
-//	sleep(Delay+CanBeSlaved*2)
+/atom/var/tmp/destination
+/mob/Monsters/proc/WalkTo(LINKED=1) if(StopDouble("WalkTo") || LINKED) spawn()
 	while(!CanBeSlaved)
 		sleep(Delay)
 		if(Delay < 1) src.Delay = 1
@@ -41,7 +40,7 @@ mob/Monsters/proc/WalkTo(LINKED=1) if(StopDouble("WalkTo") || LINKED) spawn()
 			step_towards(src,destination)
 			if(loc == destination) destination = null
 	RandomWalk(1)
-mob/Monsters/proc/Hunger() if(StopDouble("Hunger")) spawn() while(1)
+/mob/Monsters/proc/Hunger() if(StopDouble("Hunger")) spawn() while(1)
 	sleep(400)
 	if(MagicalAptitude)
 		if(Mana < MaxMana)
@@ -77,7 +76,7 @@ mob/Monsters/proc/Hunger() if(StopDouble("Hunger")) spawn() while(1)
 						Killer = "Lack Of Food"
 						DeathType = "Starvation"
 						Death()
-mob/Monsters/proc/EatSomething() switch(Race)
+/mob/Monsters/proc/EatSomething() switch(Race)
 	if("Gargoyle") for(var/obj/Items/ores/ITEM in src) if(ITEM.icon_state!="Sand") if(EatItem(ITEM)) return(1)
 	if("Vampire") for(var/mob/Monsters/C in view(1,src)) if(VampireBite(C,100,1)) return(1)
 	else
@@ -86,7 +85,7 @@ mob/Monsters/proc/EatSomething() switch(Race)
 
 		for(var/obj/Items/Food/ITEM in range(5,src)) if(ITEM.ItemType=="Food") if(ForcePickUpItem(ITEM)) if(EatItem(ITEM)) return(1)
 		for(var/mob/Monsters/M in range(5,src)) for(var/obj/Items/Food/ITEM in M) if(ITEM.ItemType=="Food") if(M.DropItem(ITEM)) if(ForcePickUpItem(ITEM)) if(EatItem(ITEM)) return(1)
-mob/Monsters/proc/Tiredness() if(StopDouble("Tiredness")) spawn() while(1)
+/mob/Monsters/proc/Tiredness() if(StopDouble("Tiredness")) spawn() while(1)
 	sleep(400)
 	if(ismob(Owner)) if(!InHole&&Owner:client) switch(Race)
 		if("Gargoyle","Elf","Zombie","Svartalfar","Devourer") if(Tiredness < 100) Tiredness +=0.5
@@ -109,14 +108,14 @@ mob/Monsters/proc/Tiredness() if(StopDouble("Tiredness")) spawn() while(1)
 					src.DeathType = "Tiredness"
 				src.Death()
 			else src.Tiredness -= 1
-mob/proc/Bed() if(StopDouble("Bed")) spawn() while(1)
+/mob/proc/Bed() if(StopDouble("Bed")) spawn() while(1)
 	if(CanBeSlaved) sleep(1000)
 	else sleep(5)
 	if(Tiredness <= 20) for(var/obj/Items/Furniture/Beds/B in view(0,src))
 		var/CanSleep = 1
 		for(var/mob/Monsters/J in oview(5,src)) if(J.destination == src) CanSleep = 0
 		if(CanSleep && src.Sleeping == 0) Sleep(300-B.CR)
-mob/proc/Sleep(TIME=300) if(!Sleeping)
+/mob/proc/Sleep(TIME=300) if(!Sleeping)
 	if(TIME<=40) TIME=40
 	spawn(TIME)
 		Tiredness = 100

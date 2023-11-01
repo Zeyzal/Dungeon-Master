@@ -63,7 +63,7 @@ var/PlayerList = list()
 			for(var/mob/X in Players2) if(X.client) for(var/obj/Hud/Day/D in X.client.screen)
 				D.icon_state = "Sun"
 				D.name = "Day"
-				D.text = "<font color=yellow>¤"
+				D.text = "<font color=yellow>ï¿½"
 			for(var/mob/Monsters/m in world)
 				if(m.SubRace == "Werewolf") m.WerewolfTransformation()
 				m.SunLight()
@@ -82,10 +82,10 @@ var/PlayerList = list()
 			for(var/mob/X in Players2) if(X.client) for(var/obj/Hud/Day/D in X.client.screen)
 				D.icon_state = "Moon"
 				D.name = "Night"
-				D.text = "<font color=blue>°"
+				D.text = "<font color=blue>ï¿½"
 			for(var/mob/Monsters/m in world)
 				if(m.SubRace == "Werewolf") m.WerewolfTransformation()
-obj/proc/CacoonTrap()
+/obj/proc/CacoonTrap()
 	var/OGB = 0
 	for(var/mob/Monsters/X in range(4,src))
 		if(X.Owner != src.Owner)
@@ -109,7 +109,7 @@ obj/proc/CacoonTrap()
 				src.Owner << "<b><font color=red><font size=3>[src] has detected an intruder at [src.x],[src.y],[src.z]!"
 				del src
 	spawn(5) src.CacoonTrap()
-obj/proc/BSTTrap()
+/obj/proc/BSTTrap()
 	var/OGB = 0
 	if(src.Hole == 1)
 		for(var/mob/Monsters/M in view(0,src))
@@ -143,7 +143,7 @@ obj/proc/BSTTrap()
 	spawn(5)
 		BSTTrap()
 		return
-obj/proc/RibTrap()
+/obj/proc/RibTrap()
 	var/OGB = 0
 	if(src.Hole == 1)
 		for(var/mob/Monsters/M in view(0,src))
@@ -177,7 +177,7 @@ obj/proc/RibTrap()
 	spawn(5)
 		RibTrap()
 		return
-obj/proc/StoneTrap()
+/obj/proc/StoneTrap()
 	var/OGB = 0
 	if(src.Hole == 1)
 		for(var/mob/Monsters/M in view(0,src))
@@ -237,7 +237,7 @@ obj/proc/StoneTrap()
 	spawn(5)
 		StoneTrap()
 		return
-obj/proc/PitTrap()
+/obj/proc/PitTrap()
 	var/OGB = 0
 	if(src.Hole == 1)
 		for(var/mob/Monsters/M in view(0,src))
@@ -308,15 +308,15 @@ obj/proc/PitTrap()
 	spawn(5)
 		PitTrap()
 		return
-mob/verb/Update() usr.Intro()
-mob/proc/Updates() Intro()
-mob/proc/Intro() //**********************Remember to carry "CanBeCaged" or whatever on births, as well as add mage chances. Just look over the old stuff to see if we're missing anything.
+/mob/verb/Update() usr.Intro()
+/mob/proc/Updates() Intro()
+/mob/proc/Intro() //**********************Remember to carry "CanBeCaged" or whatever on births, as well as add mage chances. Just look over the old stuff to see if we're missing anything.
 	html = {"
 		<style>
 		body{background:background:white; color:black;}
 		</style>
 		<font size="10"> HELLO!
-		</font><i>It's me, Félix! read me...</i>
+		</font><i>It's me, Fï¿½lix! read me...</i>
 		<br>
 		If you're new, there's a small guide in the popup that shows up when you first log in. It's slightly out of date but will give you a small explination on the controls of the game.
 		<p>

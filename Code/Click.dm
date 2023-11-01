@@ -1,4 +1,4 @@
-client/Click(atom/m)
+/client/Click(atom/m)
 	if(usr.Function == "Tapestry")
 		for(var/mob/Monsters/M in usr.Selected)
 			if(M in range(1,m))

@@ -1,4 +1,4 @@
-mob/proc/Death()
+/mob/proc/Death()
 	if(key||CantKill||Wagon) return
 	if(src.GoingToDie)
 		if(src.Race == "Kobold")
@@ -56,7 +56,7 @@ mob/proc/Death()
 		for(var/obj/DigAt/DD in world) if(DD.Owner == src.Owner) del(DD)
 		if(ismob(Owner)) if(!Critter) Legends = {"[Legends]<p>[src] - Died [Date] at age [Age], [name] had reached level [Level] before being killed by [Killer] and died from [DeathType]"}
 		del(src)
-mob/proc/MakeBody(LOC)
+/mob/proc/MakeBody(LOC)
 	switch(Race)
 		if("Skeleton")
 			var/obj/Items/Bones/Bones/C = new(LOC)
@@ -109,7 +109,7 @@ mob/proc/MakeBody(LOC)
 	B.Critter=Critter
 	if(Race == "CaveSpider") B.weight = 10
 	if(Race == "Plant") B.icon_state = "Dead[SubRace]"
-mob/proc/TearSkin(mob/Body/BODY,Telling=0) if(BODY.loc==src)
+/mob/proc/TearSkin(mob/Body/BODY,Telling=0) if(BODY.loc==src)
 	if(!BODY.Skinned)
 		BODY.Skinned=1
 		var/obj/Items/SKIN
@@ -123,15 +123,15 @@ mob/proc/TearSkin(mob/Body/BODY,Telling=0) if(BODY.loc==src)
 				if(BODY.Infects) SKIN.icon_state="Zombie"
 		if(BODY.CarryPartStats(SKIN)) return(SKIN)
 	else if(Telling) usr<<"[BODY] has already been skinned."
-mob/proc/TearMeat(mob/Body/BODY) if(DropItem(BODY))
+/mob/proc/TearMeat(mob/Body/BODY) if(DropItem(BODY))
 	BODY.MakeBone() //Notably, the first created is also at the bottom as far as icon drawing goes.
 	BODY.MakeSilk()
 	BODY.MakeMeat()
 	BODY.MakeGland()
 	BODY.MakeHead()
 	del(BODY)
-mob/proc/MakeSkin(LOC=loc) //It's VERY unlikely that this proc will ever be used more than once in the code, but for the sake of being constant.
-mob/proc/MakeHead(LOC=loc)
+/mob/proc/MakeSkin(LOC=loc) //It's VERY unlikely that this proc will ever be used more than once in the code, but for the sake of being constant.
+/mob/proc/MakeHead(LOC=loc)
 	var/obj/Items/HEAD
 	switch(Race)
 		if("Fish","Spider","CaveSpider","Plant","DeathBeatle")
@@ -146,7 +146,7 @@ mob/proc/MakeHead(LOC=loc)
 			if(Werepowers) HEAD.icon_state="Werewolf"
 			HEAD.name="[name]'s Head"
 	if(CarryPartStats(HEAD)) return(HEAD)
-mob/proc/MakeBone(LOC=loc)
+/mob/proc/MakeBone(LOC=loc)
 	var/obj/Items/BONE
 	switch(Race)
 		if("CaveSpider","Gargoyle","Plant")
@@ -158,7 +158,7 @@ mob/proc/MakeBone(LOC=loc)
 			BONE=new/obj/Items/Bones/Bones(LOC)
 			BONE.name="[Race] Bones"
 	if(CarryPartStats(BONE)) return(BONE)
-mob/proc/MakeMeat(LOC=loc)
+/mob/proc/MakeMeat(LOC=loc)
 	var/obj/Items/MEAT
 	switch(Race)
 		if("Plant","Skeleton")
@@ -169,20 +169,20 @@ mob/proc/MakeMeat(LOC=loc)
 			MEAT=new/obj/Items/Food/Meat(LOC)
 			MEAT.name="[Race] Meat"
 	if(CarryPartStats(MEAT)) return(MEAT)
-mob/proc/MakeSilk(LOC=loc)
+/mob/proc/MakeSilk(LOC=loc)
 	var/obj/Items/SILK
 	if(prob(WebContent)||Race=="CaveSpider"&&prob(25))
 		SILK=new/obj/Items/Silks/SpiderSilk(LOC)
 		SILK.name="[Race] Silk"
 	if(CarryPartStats(SILK)) return(SILK)
-mob/proc/MakeGland(LOC=loc)
+/mob/proc/MakeGland(LOC=loc)
 	var/obj/Items/Glands/GLAND
 	switch(HasGland)
 		if(1) GLAND = new/obj/Items/Glands/PoisonGland(LOC)
 		if(2) GLAND = new/obj/Items/Glands/PoisonRoots(LOC)
 		if(3) GLAND = new/obj/Items/Glands/ToxicGland(LOC)
 	if(CarryPartStats(GLAND)) return(GLAND)
-mob/proc/CarryPartStats(atom/movable/PART) if(PART) //Whenever a new part is created (Bodies too), some stats need to be carried to it. This also allows us to better control the values of those stats.
+/mob/proc/CarryPartStats(atom/movable/PART) if(PART) //Whenever a new part is created (Bodies too), some stats need to be carried to it. This also allows us to better control the values of those stats.
 	PART.Strength=Strength
 	PART.Agility=Agility
 	PART.Intelligence=Intelligence
@@ -203,7 +203,7 @@ mob/proc/CarryPartStats(atom/movable/PART) if(PART) //Whenever a new part is cre
 
 
 
-mob/Body
+/mob/Body
 	density = 0
 	Body = 1
 	layer = 4
@@ -275,7 +275,7 @@ mob/Body
 							if (Result == "Tear Skin Off") if(src in M) M.TearSkin(src,1)
 							if (Result == "Tear Meat Off") if(src in M) M.TearMeat(src)
 
-obj/Items/Bones
+/obj/Items/Bones
 	New() DeleteItem()
 	DblClick()
 		if(ismob(loc))
@@ -315,40 +315,39 @@ obj/Items/Bones
 					usr<<"" //just the same as including a "<br>" at the end, stops people from getting as confused when looking at lots of items.
 				if("Drop")M.DropItem(src)
 		else if(!suffix) for(var/mob/Monsters/M in usr.Selected) if(M.PickUpItem(src,1)) return(1)
-	SkullPile
-		icon = 'Cave.dmi'
-		icon_state = "SkullPile"
-		weight = 10
-		desc = "This is a skull pile, it looks scary."
-	Shell
+/obj/Items/Bones/SkullPile
+	icon = 'Cave.dmi'
+	icon_state = "SkullPile"
+	weight = 10
+	desc = "This is a skull pile, it looks scary."
+/obj/Items/Bones/Shell
+	icon = 'Cave.dmi'
+	icon_state = "Shell"
+	weight = 10
+	desc = "This is a hard shell, it can be used for crafting or burial."
+/obj/Items/Bones/BloodyLimb
+	icon = 'Blood.dmi'
+	icon_state = "Arm"
+	weight = 5
+	desc = "This is limb, it's useless to hold onto."
+/obj/Items/Bones/Head
+	icon = 'Heads.dmi'
+	icon_state = "FrogManHead"
+	weight = 10
+	desc = "This is a head, it can be stuck on a spike to warn invaders!"
+/obj/Items/Bones/Skull
+	icon = 'Cave.dmi'
+	icon_state = "Skull"
+	weight = 10
+	desc = "This is a skull, it can be used for bone crafting or burial"
+/obj/Items/Bones/Bones
+	icon = 'Cave.dmi'
+	icon_state = "Bone"
+	weight = 10
+	desc = "These are bones, they can be used for bone crafting or burial"
 
-		icon = 'Cave.dmi'
-		icon_state = "Shell"
-		weight = 10
-		desc = "This is a hard shell, it can be used for crafting or burial."
-	BloodyLimb
-		icon = 'Blood.dmi'
-		icon_state = "Arm"
-		weight = 5
-		desc = "This is limb, it's useless to hold onto."
-	Head
-		icon = 'Heads.dmi'
-		icon_state = "FrogManHead"
-		weight = 10
-		desc = "This is a head, it can be stuck on a spike to warn invaders!"
-	Skull
-		icon = 'Cave.dmi'
-		icon_state = "Skull"
-		weight = 10
-		desc = "This is a skull, it can be used for bone crafting or burial"
-	Bones
-		icon = 'Cave.dmi'
-		icon_state = "Bone"
-		weight = 10
-		desc = "These are bones, they can be used for bone crafting or burial"
 
-
-obj/Items/Glands
+/obj/Items/Glands
 	New() ItemDecay()
 	PoisonRoots
 		icon = 'Animal.dmi'

@@ -24,9 +24,9 @@ proc/SGS_Filter_txt(txt)
 					txt = copytext(txt,1,find_t) + stars + copytext(txt,find_t+txtLen,0)
 					if(findtext(txt,Words[mem])) goto memo
 	return txt
-mob/var/tmp/SGS_kick_for_repeat
-mob/var/tmp/SGS_remember_txt
-mob/var/tmp/SGS_locked = 0
+/mob/var/tmp/SGS_kick_for_repeat
+/mob/var/tmp/SGS_remember_txt
+/mob/var/tmp/SGS_locked = 0
 proc/SGS_AntiSpam(txt)
   SGS_log_spam(txt)
   var/spam = list("<beep>")

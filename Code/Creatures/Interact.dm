@@ -1,4 +1,4 @@
-mob/verb/Interact() for(var/mob/Monsters/M in usr.Selected)
+/mob/verb/Interact() for(var/mob/Monsters/M in usr.Selected)
 	var/list/menu = new()
 	menu += "Closest Creature"
 	menu += "This Creature"

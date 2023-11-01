@@ -1,4 +1,4 @@
-mob/Monsters/Bump(atom/m)
+/mob/Monsters/Bump(atom/m)
 	if(m!=destination) for(var/atom/DESTINATION in range(0,m)) if(DESTINATION==destination) if(DESTINATION.density) return(Bump(DESTINATION))
 	if(src.Flying) if(m.density)
 		if(m.icon_state == "Lava") src.loc = m
@@ -218,12 +218,12 @@ mob/Monsters/Bump(atom/m)
 												T.icon = 'Cave.dmi'
 												T.icon_state = "Peak"
 												T.name = "MountainPeak"
-												m.text = "<font color=#999966>×"
+												m.text = "<font color=#999966>ï¿½"
 											if(T.Content == "Sky")
 												T.icon = 'Cave.dmi'
 												T.icon_state = "Sky"
 												T.name = "Sky"
-												T.text = "<font color=#33FFFF>×"
+												T.text = "<font color=#33FFFF>ï¿½"
 									del(Q)
 					var/E
 					var/D
@@ -318,7 +318,7 @@ mob/Monsters/Bump(atom/m)
 					m.Detailed = 0
 					m.icon = 'cave.dmi'
 					m.icon_state = m.OIcon
-					m.text = "<font color=#999966>×"
+					m.text = "<font color=#999966>ï¿½"
 					m.IsWood = 0
 					if(m.Content3 == "Peak")
 						m.icon_state = "Peak"
@@ -336,10 +336,10 @@ mob/Monsters/Bump(atom/m)
 								T.Detailed = 0
 								if(T.Content3 == "Peak")
 									T.icon_state = "Peak"
-									m.text = "<font color=#999966>×"
+									m.text = "<font color=#999966>ï¿½"
 								if(T.Content == "Sky")
 									T.icon_state = "Sky"
-									m.text = "<font color=#33FFFF>×"
+									m.text = "<font color=#33FFFF>ï¿½"
 						del(Q)
 				return
 		return
