@@ -1,4 +1,4 @@
-mob/verb/Interact() for(var/mob/Monsters/M in usr.Selected)
+/mob/verb/Interact() for(var/mob/Monsters/M in usr.Selected)
 	var/list/menu = new()
 	menu += "Closest Creature"
 	menu += "This Creature"
@@ -684,7 +684,8 @@ mob/verb/Interact() for(var/mob/Monsters/M in usr.Selected)
 																	C.SubRace = "Werewolf"
 																	C.WerewolfTransformation()
 																	C.Carn = 1
-																	C.Delay -= 1
+																	if (C.Delay >= 3)
+																		C.Delay -= 1
 																	C.Regen()
 																	view() << "[C] has succumbed to the terrible lycanthropy and falls under the control of [M]"
 																	var/Resist = prob(90)

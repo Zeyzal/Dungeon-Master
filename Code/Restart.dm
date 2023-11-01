@@ -18,7 +18,7 @@ proc/LocateValidLocation(X=220,XX=999,Y=210,YY=800,Z=1,ZZ=Z)
 			TT.Content3 = "CanClimb"
 			TT.OIcon = "CaveFloor"
 	return(T)
-mob/verb/Restart()
+/mob/verb/Restart()
 	if(Up)
 		Close()
 		Up = 0
@@ -49,7 +49,7 @@ mob/verb/Restart()
 			density = 0
 			var/list/menu = new()
 			if(key == world.host) verbs+=typesof(/Admin/verb/)
-//			if("SandKing" in Rares) menu += "Sand King - Rare"
+			if("SandKing" in Rares) menu += "Sand King - Rare"
 			if("Illithids" in Rares) menu += "Illithid - Rare"
 			menu += "Human"
 			menu += "Dwarf"

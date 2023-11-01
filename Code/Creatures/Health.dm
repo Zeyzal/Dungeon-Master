@@ -1,5 +1,5 @@
 var/list/BodyParts=list("LeftArm","RightArm","LeftLeg","RightLeg","LeftEye","RightEye","LeftLung","RightLung","Spleen","Teeth","Head","LeftEar","RightEar","Guts","Stomach","LeftKidney","RightKidney","Liver","Brain","Heart","Throat","Nose","Wings")
-mob/proc/FullHeal(GROW)
+/mob/proc/FullHeal(GROW)
 	if(GROW)
 		if(Race!="Devourer")
 			HasLeftLeg = 1
@@ -26,7 +26,7 @@ mob/proc/FullHeal(GROW)
 	HP=MAXHP
 	BloodContent=MaxBloodContent
 	LimbLoss()
-mob/proc/Bleeding() if(StopDouble("Bleeding")) spawn() while(1)
+/mob/proc/Bleeding() if(StopDouble("Bleeding")) spawn() while(1)
 	sleep(50)
 	if(src.InHole == 0)
 		if(src.HasLeftLung == 0)
@@ -96,7 +96,7 @@ mob/proc/Bleeding() if(StopDouble("Bleeding")) spawn() while(1)
 					src.Death()
 					return
 		src.SaidBleed = 0
-mob/proc/Heal() if(StopDouble("Heal")) spawn() while(1)
+/mob/proc/Heal() if(StopDouble("Heal")) spawn() while(1)
 	sleep(400)
 	if(src.HP < src.MAXHP)
 		src.HP += 10
@@ -140,7 +140,7 @@ mob/proc/Heal() if(StopDouble("Heal")) spawn() while(1)
 			if(vars["[Part]HP"]>=OrganMaxHP)
 				vars["[Part]"]="Good"
 				vars["[Part]HP"]=OrganMaxHP
-mob/proc/Regen() if(StopDouble("Regen")) spawn() while(1)
+/mob/proc/Regen() if(StopDouble("Regen")) spawn() while(1)
 	sleep(600)
 	if(!HasLeftEye) if(prob(20))
 		src.Owner << "[src] grows their left eye back!"

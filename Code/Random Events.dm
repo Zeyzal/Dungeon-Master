@@ -2,7 +2,7 @@ var/EVENT_ACTION=null
 var/EVENT_DETAIL=null
 var/EVENT_QUESTION=null
 var/EVENT_TEXT=null
-Admin/verb/ChangeEventButton(VERB as text)
+/Admin/verb/ChangeEventButton(VERB as text)
 	set category="Admin"
 	EVENT_ACTION=VERB
 	switch(EVENT_ACTION)
@@ -13,7 +13,7 @@ Admin/verb/ChangeEventButton(VERB as text)
 		else
 			usr<<"You input ''[VERB]''"
 			return
-mob/verb/EVENT()
+/mob/verb/EVENT()
 	switch(EVENT_ACTION)
 		if("Warp","SilentWarp")
 			if(alert(usr,EVENT_QUESTION,"Event Button","Yes","No")=="Yes")

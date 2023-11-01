@@ -81,7 +81,7 @@ mob/Monsters/Dragon
 		Poison
 			name = "{NPC Dragons} Swamp Dragon"
 			PoisonPoints=1001
-mob/proc/DragonLayEgg(COST=1) //Cost is how much Egg Content you need to lay a dragon.
+/mob/proc/DragonLayEgg(COST=1) //Cost is how much Egg Content you need to lay a dragon.
 	if(EggContent>=COST)
 		if(ismob(Owner))
 			var/mob/OWNER=Owner
@@ -98,7 +98,7 @@ mob/proc/DragonLayEgg(COST=1) //Cost is how much Egg Content you need to lay a d
 		E.CHILDTYPE=/mob/Monsters/Dragon/
 		return(1)
 	else Owner << "[src] needs [COST-EggContent] more egg content to lay an egg."
-mob/proc/CheckDragonElement()
+/mob/proc/CheckDragonElement()
 	if(SubRace==null)
 		/*if(Unholy)
 			SubRace = "Unholy"
@@ -168,7 +168,7 @@ mob/proc/CheckDragonElement()
 			else icon_state = "blue"
 			Owner << "[src] has become an water drake (Gains immunity to disease, faster movement, and the ability to spit water!)."
 			return
-mob/proc/BrainWashing() if(src.Wagon == 0)
+/mob/proc/BrainWashing() if(src.Wagon == 0)
 	for(var/Player/M in world) if(M == src.BrainWasher)
 		Deselect()
 		src.Owner = M
@@ -182,7 +182,7 @@ mob/proc/BrainWashing() if(src.Wagon == 0)
 			src.BrainWasher = null
 			src.PreviousOwner = null
 		break
-mob/proc/Slowdown()
+/mob/proc/Slowdown()
 	if(src.Wagon == 0)
 		src.Delay += 4
 		src.overlays += .obj/frozen/
@@ -190,7 +190,7 @@ mob/proc/Slowdown()
 			src.Delay -= 4
 			src.overlays -= .obj/frozen/
 			src.Owner << "Ice Effect has worn off."
-mob/proc/DragonBreath(mob/TARGET) //Target is unrequired for Magma/Water Dragons.
+/mob/proc/DragonBreath(mob/TARGET) //Target is unrequired for Magma/Water Dragons.
 	var/ALLOWED=0
 	if(TARGET)
 		if(TARGET in oview(5,src))
@@ -271,6 +271,7 @@ mob/proc/DragonBreath(mob/TARGET) //Target is unrequired for Magma/Water Dragons
 					step(T,turn(dir,90))
 					FloodLocation(T.x,T.y,T.z,"Water")
 					del(T)
+				#warn Timer needed here... After callbacks added
 				/*if("Unholy")
 					var/Resist=prob((Level*2) - (TARGET.Level*2))
 					if(Shielded||BrainWasher) Resist = 0
@@ -296,7 +297,7 @@ proc/FloodLocation(X,Y,Z,TYPE="Water") //Tests if the cords could be flooded wit
 		switch(TYPE)
 			if("Water") new/turf/grounds/waters/water(locate(X,Y,Z))
 			if("Lava") new/turf/grounds/lavas/lava(locate(X,Y,Z))
-mob/proc/HealSlow()
+/mob/proc/HealSlow()
 	if(src.Undead == 0)
 		src.HealNumber += 1
 		src.Teeth = "Healing"

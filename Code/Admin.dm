@@ -1192,45 +1192,43 @@ Clan/verb
 				M << "You have been booted from your clan!"
 				M.Faction = "Player"
 				return
-mob
-	Developer
-		verb
-			RealPrivateMessage(var/mob/M in Players, msg as text)
-				set hidden=1
-				usr<<"<font color=red>(PM)</font color><font color=blue><--- To: <a href=?src=\ref[M];action=PPM>[M]</a>:</font color> [html_encode(msg)]"
-				M<<"<font color=red>(PM)</font color><font color=blue>---> From: <a href=?src=\ref[usr];action=PPM>[usr]</a>:</font color> [html_encode(msg)]"
-				for(var/mob/D in Players2)
-					if(D != M && D != usr)
-						if(D.key == world.host)
-							D<<"<b><font color=silver>(Priv)[usr] sent to [M]:</font color> [msg]"
-			Change_Login_Message(msg as message)
-				set category="Admin"
-				usr << "<b><font color=red>The login message is currently: '[LoginMessage]'"
-				LoginMessage=msg
-			DevEdit(A in world)
-				set category="Admin"
-				usr.client<<link("?command=edit;target=\ref[A];type=view;")
-			DevCreate()
-				set category = "Admin"
-				var
-					maxlen = 0
-					list/List2 = list()
-					list/List3 = list()
-					i = 0
-					a
-				for(a in typesof(/mob,/obj,/turf))
-					List2.Add(a)
-				maxlen = 200
 
-				var/list/list= input("Make what?","List 1")in List2
-				if(list)
-					var/item = new list(usr.loc)
-					item=item
+/mob/Developer/verb/RealPrivateMessage(var/mob/M in Players, msg as text)
+	set hidden=1
+	usr<<"<font color=red>(PM)</font color><font color=blue><--- To: <a href=?src=\ref[M];action=PPM>[M]</a>:</font color> [html_encode(msg)]"
+	M<<"<font color=red>(PM)</font color><font color=blue>---> From: <a href=?src=\ref[usr];action=PPM>[usr]</a>:</font color> [html_encode(msg)]"
+	for(var/mob/D in Players2)
+		if(D != M && D != usr)
+			if(D.key == world.host)
+				D<<"<b><font color=silver>(Priv)[usr] sent to [M]:</font color> [msg]"
+/mob/Developer/verb/Change_Login_Message(msg as message)
+	set category="Admin"
+	usr << "<b><font color=red>The login message is currently: '[LoginMessage]'"
+	LoginMessage=msg
+/mob/Developer/verb/DevEdit(A in world)
+	set category="Admin"
+	usr.client<<link("?command=edit;target=\ref[A];type=view;")
+/mob/Developer/verb/DevCreate()
+	set category = "Admin"
+	var
+		maxlen = 0
+		list/List2 = list()
+		list/List3 = list()
+		i = 0
+		a
+	for(a in typesof(/mob,/obj,/turf))
+		List2.Add(a)
+	maxlen = 200
 
-				for(a in typesof(/mob,/obj,/turf))
-					i ++
-					if(i > maxlen)
-						List3.Add(a)
+	var/list/list= input("Make what?","List 1")in List2
+	if(list)
+		var/item = new list(usr.loc)
+		item=item
+
+	for(a in typesof(/mob,/obj,/turf))
+		i ++
+		if(i > maxlen)
+			List3.Add(a)
 
 
 
@@ -1240,50 +1238,45 @@ proc
 		file("Logs/Bugs.html")<<"[time2text(world.realtime,"MMM DD - hh:mm")]: [adminaction]<br />"
 
 
-mob/proc/ReportDate(time)
+/mob/proc/ReportDate(time)
 	var/format = "<b>hh:mm:ss</b>" //MM/DD/YYYY
 	return time2text(time, format)
 
 var
 	Bugs = null//The var for the logging
 
-mob
-	verb
-		Reportabug(msg as message)
-			set hidden = 1
-			set desc = "If this is spam, you will be Murdered"
-			Bugs+="([ReportDate(world.realtime)]) [src] Reported: [html_encode(msg)]<br>"//THIS IS WHERE THE BUG LOGS TO THE HTML
-			Log_bug("[src] reported: [msg]")
+/mob/verb/Reportabug(msg as message)
+	set hidden = 1
+	set desc = "If this is spam, you will be Murdered"
+	Bugs+="([ReportDate(world.realtime)]) [src] Reported: [html_encode(msg)]<br>"//THIS IS WHERE THE BUG LOGS TO THE HTML
+	Log_bug("[src] reported: [msg]")
 
-		ViewBug()
-			set hidden = 1
-			usr<<browse("<b><body bgcolor=black><font color=white><center><u>Bug Reports For [world.name]</u></center></b><br><br>Time at view [ReportDate(world.realtime)]<br><br><font color=white>[(Bugs)]<br>")//HERES WHERE THE BUGS RECORED WILL SHOW
+/mob/verb/ViewBug()
+	set hidden = 1
+	usr<<browse("<b><body bgcolor=black><font color=white><center><u>Bug Reports For [world.name]</u></center></b><br><br>Time at view [ReportDate(world.realtime)]<br><br><font color=white>[(Bugs)]<br>")//HERES WHERE THE BUGS RECORED WILL SHOW
 
 
 ///////////////Cow RP vote system.
 
-mob
-	Admin
-		verb
-			make_vote()
-				set category="Admin"
-				if(vote_system.vote) return
-				var/question = input("What will the question be?", "Question") as text
-				var/list/options = list()
-				var/option
-				var/i = 0
-				do
-					if(option) options += option
-					option = input(usr, "What will option #[++i] be?", "Option [i]") as null|text
-				while(option != null && !vote_system.vote)
+/mob/Admin/verb/make_vote()
+	set category="Admin"
+	if(vote_system.vote) return
+	var/question = input("What will the question be?", "Question") as text
+	var/list/options = list()
+	var/option
+	var/i = 0
+	do
+		if(option) options += option
+		option = input(usr, "What will option #[++i] be?", "Option [i]") as null|text
+	while(option != null && !vote_system.vote)
 
-				if(vote_system.vote) return
-				var/vote_data/result = vote_system.Query(question, options)
-				if(result.tie)
-					var/list/tie_data = new/list()
-					for(i in result.tie_list) tie_data += options[i]
-					world <<"<b>Tie!</b> between [dd_list2text(tie_data, "; ")]..."
-				world << "Result: <b>[options[result.winner]]</b>"
+	if(vote_system.vote) return
+	var/vote_data/result = vote_system.Query(question, options)
+	if(result.tie)
+		var/list/tie_data = new/list()
+		for(i in result.tie_list) tie_data += options[i]
+		world <<"<b>Tie!</b> between [dd_list2text(tie_data, "; ")]..."
+	world << "Result: <b>[options[result.winner]]</b>"
 
 
 

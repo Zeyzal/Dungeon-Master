@@ -1,6 +1,6 @@
 
 
-mob/proc/NPCGoblinName()
+/mob/proc/NPCGoblinName()
 	var/name1
 	var/name2
 	var/Pick2
@@ -89,7 +89,7 @@ mob/proc/NPCGoblinName()
 			name2 = "Tez'lek"
 	src.name = "{NPC} [name1] [name2]"
 
-mob/proc/NPCKoboldName()
+/mob/proc/NPCKoboldName()
 	var/name1
 	var/name2
 	var/Pick2
@@ -177,7 +177,7 @@ mob/proc/NPCKoboldName()
 		if(20)
 			name2 = "Ty'sme"
 	src.name = "[name1] [name2]"
-mob/proc/NPCHumanName()
+/mob/proc/NPCHumanName()
 	var/name1
 	var/name2
 	var/Pick2

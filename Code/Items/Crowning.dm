@@ -21,10 +21,10 @@ proc/GenderToTheir(GENDER) switch(GENDER)
 	if("Female") return("her")
 	if("Male") return("his")
 	else return("its")
-mob/verb/DeclareLeader() for(var/mob/Monsters/M in Selected)
+/mob/verb/DeclareLeader() for(var/mob/Monsters/M in Selected)
 	if(M.IsRoyal) if(M.RemoveLeader()) return
 	else if(M.AddLeader()) return
-mob/proc
+/mob/proc
 	AddLeader(obj/Items/Equipment/CROWN)
 		if(!IsRoyal) if(alert(Owner,"Do you wish to make [src] into your [GenderToLeader(Gender)]?","Set Leader","Yes","No")=="Yes") if(!IsRoyal)
 			var/mob/Monsters
@@ -60,9 +60,9 @@ mob/proc
 		Owner<<"[src] has stepped down from being [GenderToLeader(Gender)] of your Empire."
 		usr.CoolDown("[GenderToLeader(Gender)]",36000)
 		return(1)
-mob/var/IsRoyal
+/mob/var/IsRoyal
 
-mob/proc/ChangeRoyal()
+/mob/proc/ChangeRoyal()
 	var/INFLUENCE
 	if(IsRoyal)
 		IsRoyal=null

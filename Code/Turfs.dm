@@ -14,7 +14,7 @@ area
 	Underground
 	Sky
 	Hell
-mob/proc/SunLight() if(!key) switch(Race) if("Vampire","Svartalfar") if(!NotInLight)
+/mob/proc/SunLight() if(!key) switch(Race) if("Vampire","Svartalfar") if(!NotInLight)
 	NotInLight=1
 	spawn() while(NotInLight)
 		var/turf/LOCATION = loc
@@ -39,7 +39,7 @@ mob/proc/SunLight() if(!key) switch(Race) if("Vampire","Svartalfar") if(!NotInLi
 				NotInLight=0
 				return
 		sleep(50)
-turf/proc //This should REALLY be a mob proc..
+/turf/proc //This should REALLY be a mob proc..
 	ApplyTemperature(Temperature) if(usr) if(!usr.key) if(!usr.ImmuneToTemperature) if(!usr.Undead) if(!usr.CanBeSlaved)
 		if(Temperature>0&&!night) usr.Coldness -= Temperature
 		if(Temperature<0&&night) usr.Coldness -= Temperature
@@ -73,7 +73,7 @@ turf/proc //This should REALLY be a mob proc..
 			usr.Coldness+=1
 			if(usr.Coldness>0) usr.Coldness=0
 
-turf/grounds/Entered() if(ismob(usr))if(!usr.Wagon)
+/turf/grounds/Entered() if(ismob(usr))if(!usr.Wagon)
 	if(src.Content3 == "Liquid")
 		if(OnFire)
 			usr.OnFire = 0
@@ -138,14 +138,14 @@ turf/grounds/Entered() if(ismob(usr))if(!usr.Wagon)
 			if(UNDERGROUND_LAYER) return
 			if(SKY_LAYER) usr.z=GROUND_LAYER
 		usr.destination = null
-obj/proc/Delete() spawn()
+/obj/proc/Delete() spawn()
 	if(BloodAcidity)
 		sleep(750)
 		del(src)
 	else
 		sleep(rand(1500,3000))
 		del(src)
-obj
+/obj
 	Support
 	miss
 		icon = 'fx.dmi'
@@ -5555,6 +5555,7 @@ obj
 										M.Defence -= 10
 										if(src.icon_state == "Diamond Ring")
 											M.Defence -= 5
+											M.ImmuneToMagic = 0
 										return
 									else
 										usr << "[M] isn't wearing a ring"
@@ -5690,7 +5691,7 @@ obj
 								if (Result == "Wear")
 									if(src.suffix == "(Carrying)")
 										if(!M.WearingRing)
-											if(!M.SubRace && M.Race != "Vampire" && M.Race != "Spider" && M.Race != "Gargoyle" && M.Wagon == 0 && M.Race != "Skeleton" )
+											if(!M.SubRace && M.Race != "Vampire" && M.Race != "Spider" && M.Race != "Gargoyle" && M.Wagon == 0 && M.Race != "Skeleton" && !/mob/proc/VampireInfection )
 												M.WearingRing = 1
 												usr << "[M] puts on the ring of Lycanthropy, it bonds to their flesh and eats into their hand!"
 												M.SubRace = "Werewolf"
@@ -5700,7 +5701,8 @@ obj
 												M.Defence += 15
 												M.Delay -= 1
 												M.Regen()
-												if(M.DropItem(src)) del(src)
+												if(M.DropItem(src)) 
+													del(src)
 											else
 												usr << "[M] attempts to wear the ring but it slips off their finger leaving large, bloody gashes"
 												M.BloodLoss()

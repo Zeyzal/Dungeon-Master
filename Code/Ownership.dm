@@ -1,4 +1,4 @@
-mob/proc/ChangeOwnership(WHO,FORCE) //Sets to the owner to WHO, and if WHO is a mob adds to the unit list.
+/mob/proc/ChangeOwnership(WHO,FORCE) //Sets to the owner to WHO, and if WHO is a mob adds to the unit list.
 	//If setting to a player make sure WHO is the player's mob, and not just their name.
 	//This meaning src's Owner and WHO can both be null and the proc will still work.
 	if(!IsRoyal||FORCE)

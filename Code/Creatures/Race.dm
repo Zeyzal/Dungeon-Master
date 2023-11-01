@@ -1,13 +1,13 @@
 //This File is more simply here to contain updates in an organized way. Similar to race speicific, there will eventually be a bunch of procs here referanced by the main code in the place of the old stuff.
 
-atom/movable/var //Some objects hold these vars, but no turfs. So movable atoms it is.
+/atom/movable/var //Some objects hold these vars, but no turfs. So movable atoms it is.
 	Race = null
 	SubRace = null
 	Werepowers = 0
 	Level = 0
 	EXP = 0
 	HasGland = 0
-mob/proc/RaceChange(RACE,SUBRACE) //Both Arguments are optional.
+/mob/proc/RaceChange(RACE,SUBRACE) //Both Arguments are optional.
 	if(RACE)
 		switch(RACE)
 			if("Vampire")
@@ -34,8 +34,10 @@ mob/proc/RaceChange(RACE,SUBRACE) //Both Arguments are optional.
 				ImmuneToTemperature=1
 				Defence+=Level/5
 				if(Race=="Lizardman")
-					if(Level>40) Defence-=8
-					else Defence-=Level/5
+					if(Level>40) 
+						Defence-=8
+					else 
+						Defence-=Level/5
 				Strength+=Level/2
 				Agility+=Level/2
 				weightmax+=Level*5
@@ -50,7 +52,7 @@ mob/proc/RaceChange(RACE,SUBRACE) //Both Arguments are optional.
 							icon = 'Demon.dmi'
 							Strength += rand(3,5)
 							LimbLoss()
-mob/proc/Fly(SAY=1,FLY) if(!Morphed) if(!IsMist)
+/mob/proc/Fly(SAY=1,FLY) if(!Morphed) if(!IsMist)
 	if(!Flying) if(FLY==null||FLY=="Fly")
 		if(HasLeftLeg&&HasRightLeg&&HasLeftArm&&HasRightArm)
 			switch(Race)

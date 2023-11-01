@@ -1,8 +1,8 @@
-mob/var
+/mob/var
 	savedx = 0
 	savedy = 0
 	savedz = 0
-Admin/verb/SaveUnitsInWorld()
+/Admin/verb/SaveUnitsInWorld()
 	set category="Admin"
 	SaveUnits()
 	world << "[usr] has saved units."
@@ -24,7 +24,7 @@ Admin/verb/SaveUnitsInWorld()
 		X.savedz = X.z
 	M.Write(S)
 
-mob/proc/LoadUnits() if(fexists("units/[ckey]_save.sav"))
+/mob/proc/LoadUnits() if(fexists("units/[ckey]_save.sav"))
 	var/sav = "units/[ckey]_save.sav"
 	var/savefile/S = new(sav)
 	Read(S)
