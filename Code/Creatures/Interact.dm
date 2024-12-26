@@ -528,8 +528,7 @@
 				M.Delay -= 1
 			if("Defensive Fighting")
 				M.DefensiveFight = 1
-				M.Damage *= 0.90
-				M.Defence += 30
+				M.Defence += 40
 			if("Firebolt") if(!M.Flying)
 				for(var/mob/Monsters/X in oview(5,M))
 					if(M.MagicTarget == X)
