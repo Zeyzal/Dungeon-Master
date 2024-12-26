@@ -437,7 +437,7 @@
 		menu2 += "Suicide"
 		if(M.Race == "Gargoyle" || M.Race == "Dragon" || M.SubRace == "Illithid" || M.Undead) menu2 += "Rest"
 		if(M.Race == "Orc")
-			if(M.Level >= 40)
+			if(M.Level >= 40 && !M.Berserking && !M.DefensiveFight)
 				menu2 += "Berserk"
 				menu2 += "Defensive Fighting"
 		if(M.GargRuby >= 15) menu2 += "Firebolt"
@@ -521,6 +521,15 @@
 						M.Killer = M
 						M.Death()
 						M.Owner << "[M] has commited SUICIDE!"
+			if("Berserk")
+				M.Berserking = 1
+				M.WeaponDamageMin += 5
+				M.WeaponDamageMax += 10
+				M.Delay -= 1
+			if("Defensive Fighting")
+				M.DefensiveFight = 1
+				M.Damage *= 0.90
+				M.Defence += 30
 			if("Firebolt") if(!M.Flying)
 				for(var/mob/Monsters/X in oview(5,M))
 					if(M.MagicTarget == X)
