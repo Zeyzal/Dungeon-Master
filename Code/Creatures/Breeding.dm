@@ -113,7 +113,7 @@
 		for(var/T in list("Spear","Bow","Sword","Axe","Mace","UnArmed","Shield","Armour","WoodCrafting","MetalCrafting","Skinning","Building","JewlCrafting","Butchery","LeatherCrafting","Poison","BoneCrafting","StoneCrafting","Sneaking","LockPicking","Cooking","Fishing","Potion")) CHILD.vars["[T]Skill"]+=FATHER.vars["[T]Skill"]/6+MOTHER.vars["[T]Skill"]/6
 		CHILD.ChangeOwnership(Owner) //Sets CHILD's Owner var to the same Owner as src. Regardless of who the true perents are currently controlled by.
 		CHILD.Age=0
-		CHILD.CanBeCaged=MOTHER.CanBeCaged
+		CHILD.CanBeCaged=0
 		CHILD.name = "{[Owner]} [CHILD.Race]"
 	//	if(Event("Shooting Star",-1)) if(!CHILD.Critter)
 		switch(CHILD.Race)
