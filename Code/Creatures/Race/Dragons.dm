@@ -100,13 +100,13 @@ mob/Monsters/Dragon
 	else Owner << "[src] needs [COST-EggContent] more egg content to lay an egg."
 /mob/proc/CheckDragonElement()
 	if(SubRace==null)
-		/*if(Unholy)
+		if(Unholy)
 			SubRace = "Unholy"
 			ImmuneToMagic = 1
 			if(Flying) icon_state = "flyingdark"
 			else icon_state = "dark"
 			Owner << "[src] has become an dark drake (Gains immunity to magic, disease, and the ability to brainwash units!)."
-			return*/
+			return
 		if(Shielded)
 			SubRace = "Holy"
 			ImmuneToMagic = 1
@@ -272,15 +272,15 @@ mob/Monsters/Dragon
 					FloodLocation(T.x,T.y,T.z,"Water")
 					del(T)
 				#warn Timer needed here... After callbacks added
-				/*if("Unholy")
+				if("Unholy")
 					var/Resist=prob((Level*2) - (TARGET.Level*2))
-					if(Shielded||BrainWasher) Resist = 0
+					if (Shielded || BrainWasher || TARGET.IsRoyal) Resist = 0
 					if(Resist)
 						view(src) << "[src] spits an orb of darkness at [TARGET] brainwashing them temporarily!!"
 						TARGET.BrainWasher = Owner
 						TARGET.PreviousOwner = TARGET.Owner
 						TARGET.BrainWashing()
-					else view(src) << "[src] spits an orb of darkness at [TARGET] but they resist!!"*/
+					else view(src) << "[src] spits an orb of darkness at [TARGET] but they resist!!"
 				if("Holy")
 					view(src) << "[src] breaths a cone of warm glowing light at [TARGET]."
 					TARGET.HealSlow()
